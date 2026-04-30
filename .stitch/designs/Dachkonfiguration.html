@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+
+<html class="light" lang="de"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Erzähl uns von deinem Dach - SolarConfig</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-low": "#f5f3f5",
+                        "on-tertiary-container": "#a28259",
+                        "secondary": "#855300",
+                        "on-surface-variant": "#44474d",
+                        "primary-container": "#0d2137",
+                        "surface-container": "#efedef",
+                        "surface-container-high": "#e9e7ea",
+                        "primary-fixed-dim": "#b5c8e5",
+                        "on-error": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "on-tertiary": "#ffffff",
+                        "surface-tint": "#4d6079",
+                        "tertiary-fixed": "#ffddb5",
+                        "surface-bright": "#fbf9fb",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-container": "#7689a4",
+                        "primary-fixed": "#d2e4ff",
+                        "outline-variant": "#c4c6cd",
+                        "on-secondary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "on-primary-fixed": "#081c32",
+                        "error": "#ba1a1a",
+                        "inverse-surface": "#303032",
+                        "secondary-fixed-dim": "#ffb95f",
+                        "surface-dim": "#dbd9dc",
+                        "error-container": "#ffdad6",
+                        "on-secondary-container": "#684000",
+                        "primary": "#000917",
+                        "tertiary-container": "#301c00",
+                        "inverse-primary": "#b5c8e5",
+                        "secondary-fixed": "#ffddb8",
+                        "secondary-container": "#fea619",
+                        "surface-variant": "#e4e2e4",
+                        "tertiary-fixed-dim": "#e6c093",
+                        "on-tertiary-fixed-variant": "#5c421f",
+                        "on-surface": "#1b1c1d",
+                        "outline": "#74777d",
+                        "on-primary-fixed-variant": "#364860",
+                        "background": "#fbf9fb",
+                        "on-secondary-fixed": "#2a1700",
+                        "on-secondary-fixed-variant": "#653e00",
+                        "on-tertiary-fixed": "#2a1800",
+                        "surface": "#fbf9fb",
+                        "tertiary": "#100700",
+                        "surface-container-highest": "#e4e2e4",
+                        "inverse-on-surface": "#f2f0f2",
+                        "on-background": "#1b1c1d"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "section-padding": "80px",
+                        "stack-sm": "12px",
+                        "stack-md": "24px",
+                        "card-padding": "32px",
+                        "gutter": "24px",
+                        "stack-lg": "48px",
+                        "container-max": "1200px",
+                        "base": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Inter"],
+                        "caption": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-xl": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "caption": ["12px", { "lineHeight": "1.4", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "headline-xl": ["40px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.25", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "label-md": ["14px", { "lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col">
+<!-- TopAppBar (Transactional - Hidden Navigation Links for focus) -->
+<header class="bg-white dark:bg-slate-950 font-['Inter'] antialiased text-sm font-medium w-full top-0 border-b border-slate-200 dark:border-slate-800 z-50 shadow-sm sticky">
+<div class="max-w-[1200px] mx-auto px-6 flex items-center justify-between h-20">
+<div class="text-xl font-black tracking-tight text-blue-950 dark:text-white">SolarConfig</div>
+<div class="flex items-center gap-4 text-slate-600 dark:text-slate-400">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-green-600" data-weight="fill" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+<span class="text-xs hidden sm:inline">Geprüfter Anbieter</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-blue-600" data-weight="fill" style="font-variation-settings: 'FILL' 1;">security</span>
+<span class="text-xs hidden sm:inline">DSGVO Konform</span>
+</div>
+</div>
+<button class="bg-secondary-container text-primary-container px-4 py-2 rounded-lg font-label-md font-semibold hover:bg-secondary-fixed transition-colors">
+                Abbrechen
+            </button>
+</div>
+<!-- Progress Bar -->
+<div class="w-full bg-surface-variant h-1">
+<div class="bg-secondary-container h-1 w-1/4 transition-all duration-500 ease-in-out"></div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow max-w-[1200px] mx-auto w-full px-6 py-section-padding">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Configurator Form Area -->
+<div class="lg:col-span-8 flex flex-col gap-stack-lg">
+<!-- Header -->
+<div>
+<p class="font-label-md text-secondary-container mb-2">SCHRITT 1 VON 4</p>
+<h1 class="font-headline-xl text-primary-container mb-4">Erzähl uns von deinem Dach</h1>
+<p class="font-body-lg text-on-surface-variant max-w-2xl">
+                        Um die beste Anlage für dich zu planen, benötigen wir ein paar Details zu deinem Haus.
+                    </p>
+</div>
+<!-- Form Section 1: Orientation -->
+<div class="flex flex-col gap-stack-sm">
+<h2 class="font-headline-md text-primary-container">Dachausrichtung</h2>
+<p class="font-body-md text-outline">Wohin neigt sich deine größte Dachfläche?</p>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-2">
+<!-- Card 1 -->
+<label class="relative cursor-pointer group">
+<input class="peer sr-only" name="orientation" type="radio" value="sued"/>
+<div class="h-full bg-surface-container-lowest border-2 border-surface-variant rounded-xl p-card-padding flex flex-col items-center text-center transition-all duration-200 peer-checked:border-secondary-container peer-checked:bg-secondary-fixed/10 group-hover:border-secondary-container/50 group-hover:shadow-[0px_4px_20px_rgba(13,33,55,0.05)]">
+<span class="material-symbols-outlined text-4xl text-primary-container mb-4" data-weight="fill" style="font-variation-settings: 'FILL' 1;">wb_sunny</span>
+<span class="font-headline-md text-primary-container">Süd</span>
+<span class="font-caption text-outline mt-2">Höchster Ertrag</span>
+</div>
+<div class="absolute top-4 right-4 text-secondary-container opacity-0 peer-checked:opacity-100 transition-opacity">
+<span class="material-symbols-outlined" data-weight="fill" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</label>
+<!-- Card 2 -->
+<label class="relative cursor-pointer group">
+<input class="peer sr-only" name="orientation" type="radio" value="ostwest"/>
+<div class="h-full bg-surface-container-lowest border-2 border-surface-variant rounded-xl p-card-padding flex flex-col items-center text-center transition-all duration-200 peer-checked:border-secondary-container peer-checked:bg-secondary-fixed/10 group-hover:border-secondary-container/50 group-hover:shadow-[0px_4px_20px_rgba(13,33,55,0.05)]">
+<span class="material-symbols-outlined text-4xl text-primary-container mb-4" data-weight="fill" style="font-variation-settings: 'FILL' 1;">explore</span>
+<span class="font-headline-md text-primary-container">Ost/West</span>
+<span class="font-caption text-outline mt-2">Gute Verteilung</span>
+</div>
+<div class="absolute top-4 right-4 text-secondary-container opacity-0 peer-checked:opacity-100 transition-opacity">
+<span class="material-symbols-outlined" data-weight="fill" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</label>
+<!-- Card 3 -->
+<label class="relative cursor-pointer group">
+<input class="peer sr-only" name="orientation" type="radio" value="nord"/>
+<div class="h-full bg-surface-container-lowest border-2 border-surface-variant rounded-xl p-card-padding flex flex-col items-center text-center transition-all duration-200 peer-checked:border-secondary-container peer-checked:bg-secondary-fixed/10 group-hover:border-secondary-container/50 group-hover:shadow-[0px_4px_20px_rgba(13,33,55,0.05)]">
+<span class="material-symbols-outlined text-4xl text-outline mb-4" data-weight="fill" style="font-variation-settings: 'FILL' 1;">ac_unit</span>
+<span class="font-headline-md text-primary-container">Nord</span>
+<span class="font-caption text-outline mt-2">Geringerer Ertrag</span>
+</div>
+<div class="absolute top-4 right-4 text-secondary-container opacity-0 peer-checked:opacity-100 transition-opacity">
+<span class="material-symbols-outlined" data-weight="fill" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</label>
+</div>
+</div>
+<hr class="border-surface-variant"/>
+<!-- Form Section 2: Area & Year -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-stack-md">
+<!-- Surface Area -->
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-primary-container" for="surface-area">Geschätzte Dachfläche (m²)</label>
+<div class="relative">
+<input class="w-full bg-surface-container-lowest border border-outline-variant text-on-surface font-body-md rounded-lg px-4 py-3 focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-colors" id="surface-area" placeholder="z.B. 80" type="number"/>
+<span class="absolute right-4 top-1/2 -translate-y-1/2 font-body-md text-outline">m²</span>
+</div>
+</div>
+<!-- Construction Year -->
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-primary-container" for="construction-year">Baujahr des Hauses</label>
+<select class="w-full bg-surface-container-lowest border border-outline-variant text-on-surface font-body-md rounded-lg px-4 py-3 appearance-none focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-colors" id="construction-year">
+<option disabled="" selected="" value="">Bitte wählen...</option>
+<option value="after2010">Nach 2010</option>
+<option value="1990-2010">1990 - 2010</option>
+<option value="1980-1989">1980 - 1989</option>
+<option value="pre1980">Vor 1980</option>
+</select>
+<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 pt-8 text-outline">
+<span class="material-symbols-outlined">expand_more</span>
+</div>
+</div>
+</div>
+<!-- Warning Message (Conditional styling example) -->
+<div class="bg-error-container text-on-error-container p-4 rounded-lg flex items-start gap-3 mt-4 border border-error/20">
+<span class="material-symbols-outlined text-error mt-0.5">warning</span>
+<p class="font-body-md text-sm">
+<strong class="font-semibold">Hinweis:</strong> Bei Häusern vor 1980 kann eine Zählerschranksanierung nötig sein (+1.500–3.000 €).
+                    </p>
+</div>
+<!-- Actions -->
+<div class="flex items-center justify-between mt-8 pt-8 border-t border-surface-variant">
+<button class="px-6 py-3 border border-primary-container text-primary-container font-label-md rounded-lg hover:bg-surface-variant transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">arrow_back</span>
+                        Zurück
+                    </button>
+<button class="bg-secondary-container text-primary-container px-8 py-3 rounded-lg font-label-md font-bold hover:bg-secondary-fixed transition-colors flex items-center gap-2 shadow-[0px_4px_20px_rgba(13,33,55,0.05)]">
+                        Weiter
+                        <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Sticky Sidebar Sidebar -->
+<div class="hidden lg:block lg:col-span-4 relative">
+<div class="sticky top-28 bg-surface-container-lowest border border-surface-variant rounded-xl p-card-padding shadow-[0px_4px_20px_rgba(13,33,55,0.05)]">
+<h3 class="font-headline-md text-primary-container mb-6">Deine Konfiguration</h3>
+<ul class="flex flex-col gap-4 relative before:content-[''] before:absolute before:left-[11px] before:top-2 before:bottom-6 before:w-[2px] before:bg-surface-variant">
+<!-- Step 1 (Active) -->
+<li class="flex items-start gap-4 relative">
+<div class="w-6 h-6 rounded-full bg-secondary-container text-primary-container flex items-center justify-center font-bold text-xs z-10 shrink-0">
+                                1
+                            </div>
+<div>
+<p class="font-label-md text-primary-container">Dachdetails</p>
+<p class="font-caption text-outline">Ausrichtung &amp; Baujahr</p>
+</div>
+</li>
+<!-- Step 2 -->
+<li class="flex items-start gap-4 relative opacity-50">
+<div class="w-6 h-6 rounded-full bg-surface-variant text-outline flex items-center justify-center font-bold text-xs z-10 shrink-0">
+                                2
+                            </div>
+<div>
+<p class="font-label-md text-on-surface">Stromverbrauch</p>
+</div>
+</li>
+<!-- Step 3 -->
+<li class="flex items-start gap-4 relative opacity-50">
+<div class="w-6 h-6 rounded-full bg-surface-variant text-outline flex items-center justify-center font-bold text-xs z-10 shrink-0">
+                                3
+                            </div>
+<div>
+<p class="font-label-md text-on-surface">Speicher &amp; Wallbox</p>
+</div>
+</li>
+<!-- Step 4 -->
+<li class="flex items-start gap-4 relative opacity-50">
+<div class="w-6 h-6 rounded-full bg-surface-variant text-outline flex items-center justify-center font-bold text-xs z-10 shrink-0">
+                                4
+                            </div>
+<div>
+<p class="font-label-md text-on-surface">Ergebnis</p>
+</div>
+</li>
+</ul>
+<div class="mt-8 p-4 bg-surface-container rounded-lg">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-secondary-container" data-weight="fill" style="font-variation-settings: 'FILL' 1;">lightbulb</span>
+<p class="font-label-md text-primary-container">Warum fragen wir das?</p>
+</div>
+<p class="font-caption text-on-surface-variant">
+                            Die Ausrichtung deines Daches bestimmt maßgeblich, wie viel Sonnenenergie eingefangen werden kann. Das Baujahr hilft uns, eventuelle Zusatzkosten frühzeitig zu erkennen.
+                        </p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-slate-50 dark:bg-slate-900 font-['Inter'] text-xs leading-relaxed full-width mt-auto border-t border-slate-200 dark:border-slate-800">
+<div class="max-w-[1200px] mx-auto px-6 py-8 flex flex-col md:flex-row justify-between items-center gap-4">
+<div class="font-bold text-slate-900 dark:text-white">SolarConfig</div>
+<div class="text-slate-500">
+                © 2024 SolarConfig. Dein Partner für Photovoltaik. 100% Datenschutz gemäß DSGVO.
+            </div>
+<div class="flex gap-4">
+<a class="text-slate-500 hover:text-blue-950 underline decoration-amber-500 underline-offset-4 opacity-100 hover:opacity-80 transition-opacity" href="#">Datenschutz</a>
+<a class="text-slate-500 hover:text-blue-950 underline decoration-amber-500 underline-offset-4 opacity-100 hover:opacity-80 transition-opacity" href="#">Impressum</a>
+<a class="text-slate-500 hover:text-blue-950 underline decoration-amber-500 underline-offset-4 opacity-100 hover:opacity-80 transition-opacity" href="#">AGB</a>
+<a class="text-slate-500 hover:text-blue-950 underline decoration-amber-500 underline-offset-4 opacity-100 hover:opacity-80 transition-opacity" href="#">Kontakt</a>
+</div>
+</div>
+</footer>
+</body></html>

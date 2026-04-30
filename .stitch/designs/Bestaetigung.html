@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+
+<html lang="de"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SolarConfig - Bestätigung</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-family: 'Material Symbols Outlined';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 24px;
+            line-height: 1;
+            letter-spacing: normal;
+            text-transform: none;
+            display: inline-block;
+            white-space: nowrap;
+            word-wrap: normal;
+            direction: ltr;
+            -webkit-font-feature-settings: 'liga';
+            -webkit-font-smoothing: antialiased;
+        }
+    </style>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-low": "#f5f3f5",
+                        "on-tertiary-container": "#a28259",
+                        "secondary": "#855300",
+                        "on-surface-variant": "#44474d",
+                        "primary-container": "#0d2137",
+                        "surface-container": "#efedef",
+                        "surface-container-high": "#e9e7ea",
+                        "primary-fixed-dim": "#b5c8e5",
+                        "on-error": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "on-tertiary": "#ffffff",
+                        "surface-tint": "#4d6079",
+                        "tertiary-fixed": "#ffddb5",
+                        "surface-bright": "#fbf9fb",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-container": "#7689a4",
+                        "primary-fixed": "#d2e4ff",
+                        "outline-variant": "#c4c6cd",
+                        "on-secondary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "on-primary-fixed": "#081c32",
+                        "error": "#ba1a1a",
+                        "inverse-surface": "#303032",
+                        "secondary-fixed-dim": "#ffb95f",
+                        "surface-dim": "#dbd9dc",
+                        "error-container": "#ffdad6",
+                        "on-secondary-container": "#684000",
+                        "primary": "#000917",
+                        "tertiary-container": "#301c00",
+                        "inverse-primary": "#b5c8e5",
+                        "secondary-fixed": "#ffddb8",
+                        "secondary-container": "#fea619",
+                        "surface-variant": "#e4e2e4",
+                        "tertiary-fixed-dim": "#e6c093",
+                        "on-tertiary-fixed-variant": "#5c421f",
+                        "on-surface": "#1b1c1d",
+                        "outline": "#74777d",
+                        "on-primary-fixed-variant": "#364860",
+                        "background": "#fbf9fb",
+                        "on-secondary-fixed": "#2a1700",
+                        "on-secondary-fixed-variant": "#653e00",
+                        "on-tertiary-fixed": "#2a1800",
+                        "surface": "#fbf9fb",
+                        "tertiary": "#100700",
+                        "surface-container-highest": "#e4e2e4",
+                        "inverse-on-surface": "#f2f0f2",
+                        "on-background": "#1b1c1d"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "section-padding": "80px",
+                        "stack-sm": "12px",
+                        "stack-md": "24px",
+                        "card-padding": "32px",
+                        "gutter": "24px",
+                        "stack-lg": "48px",
+                        "container-max": "1200px",
+                        "base": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Inter"],
+                        "caption": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-xl": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "caption": ["12px", { "lineHeight": "1.4", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "headline-xl": ["40px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.25", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "label-md": ["14px", { "lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface min-h-screen flex flex-col font-body-md antialiased selection:bg-secondary-container selection:text-on-secondary-container">
+<header class="w-full flex justify-center py-stack-lg">
+<span class="font-headline-lg text-headline-lg text-primary tracking-tight font-black">SolarConfig</span>
+</header>
+<main class="flex-1 w-full max-w-container-max mx-auto px-6 pb-section-padding flex flex-col items-center">
+<div class="bg-surface-container-lowest rounded-xl shadow-lg border border-surface-variant p-card-padding md:p-12 w-full max-w-4xl relative overflow-hidden flex flex-col items-center text-center">
+<div class="absolute top-0 left-0 w-full h-2 bg-secondary-container"></div>
+<div class="w-24 h-24 rounded-full bg-primary-fixed flex items-center justify-center mb-stack-md shadow-sm">
+<span class="material-symbols-outlined text-5xl text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-primary mb-stack-sm">Vielen Dank für dein Vertrauen!</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto mb-stack-lg">
+                Deine Anfrage wurde erfolgreich übermittelt. Wir haben alle Details zu deinem Solar-Projekt erhalten und unser Team macht sich direkt an die Arbeit.
+            </p>
+<div class="w-full bg-surface rounded-lg p-stack-md border border-surface-variant text-left mb-stack-lg">
+<h2 class="font-label-md text-label-md text-primary uppercase tracking-wider mb-stack-sm">Deine Konfiguration im Überblick</h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-stack-sm">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary-fixed-dim">roofing</span>
+<span class="font-body-md text-body-md text-on-surface">Satteldach (Südausrichtung)</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary-fixed-dim">bolt</span>
+<span class="font-body-md text-body-md text-on-surface">ca. 4.500 kWh Jahresverbrauch</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary-fixed-dim">battery_charging_full</span>
+<span class="font-body-md text-body-md text-on-surface">Mit Stromspeicher geplant</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary-fixed-dim">electric_car</span>
+<span class="font-body-md text-body-md text-on-surface">Wallbox vorgesehen</span>
+</div>
+</div>
+</div>
+<div class="w-full text-left">
+<h3 class="font-headline-md text-headline-md text-primary mb-stack-md text-center">Nächste Schritte</h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<div class="bg-surface rounded-lg p-stack-md border border-surface-variant relative pt-10">
+<div class="absolute -top-4 left-6 w-10 h-10 rounded-full bg-primary flex items-center justify-center text-on-primary font-label-md text-label-md border-4 border-surface-container-lowest shadow-sm">1</div>
+<span class="material-symbols-outlined text-3xl text-secondary-container mb-2">satellite_alt</span>
+<h4 class="font-label-md text-label-md text-primary mb-1">Dach-Check</h4>
+<p class="font-caption text-caption text-on-surface-variant">Unsere Experten prüfen dein Dach via Satellit auf Eignung und maximales Ertragspotenzial.</p>
+</div>
+<div class="bg-surface rounded-lg p-stack-md border border-surface-variant relative pt-10">
+<div class="absolute -top-4 left-6 w-10 h-10 rounded-full bg-primary flex items-center justify-center text-on-primary font-label-md text-label-md border-4 border-surface-container-lowest shadow-sm">2</div>
+<span class="material-symbols-outlined text-3xl text-secondary-container mb-2">assignment</span>
+<h4 class="font-label-md text-label-md text-primary mb-1">Angebot in 48h</h4>
+<p class="font-caption text-caption text-on-surface-variant">Du erhältst ein maßgeschneidertes, wirtschaftliches und unverbindliches Festpreisangebot.</p>
+</div>
+<div class="bg-surface rounded-lg p-stack-md border border-surface-variant relative pt-10">
+<div class="absolute -top-4 left-6 w-10 h-10 rounded-full bg-primary flex items-center justify-center text-on-primary font-label-md text-label-md border-4 border-surface-container-lowest shadow-sm">3</div>
+<span class="material-symbols-outlined text-3xl text-secondary-container mb-2">handyman</span>
+<h4 class="font-label-md text-label-md text-primary mb-1">Meister-Installation</h4>
+<p class="font-caption text-caption text-on-surface-variant">Nach deiner Freigabe übernehmen unsere zertifizierten regionalen Partner die Installation.</p>
+</div>
+</div>
+</div>
+<div class="mt-stack-lg">
+<a class="inline-flex items-center gap-2 px-6 py-3 rounded-lg border-2 border-primary text-primary hover:bg-primary hover:text-on-primary transition-colors duration-200 font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">home</span>
+                    Zurück zur Startseite
+                </a>
+</div>
+</div>
+</main>
+</body></html>

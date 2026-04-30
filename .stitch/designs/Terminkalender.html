@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+
+<html lang="de"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Installateur Kalender</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-low": "#f5f3f5",
+                        "inverse-primary": "#b5c8e5",
+                        "secondary-fixed": "#ffddb8",
+                        "secondary": "#855300",
+                        "primary-container": "#0d2137",
+                        "on-secondary-fixed-variant": "#653e00",
+                        "on-primary-fixed": "#081c32",
+                        "on-primary": "#ffffff",
+                        "primary": "#000917",
+                        "background": "#fbf9fb",
+                        "surface-dim": "#dbd9dc",
+                        "outline": "#74777d",
+                        "on-tertiary-fixed-variant": "#5c421f",
+                        "surface-bright": "#fbf9fb",
+                        "on-surface": "#1b1c1d",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container": "#efedef",
+                        "on-error-container": "#93000a",
+                        "surface-container-high": "#e9e7ea",
+                        "inverse-on-surface": "#f2f0f2",
+                        "tertiary-fixed": "#ffddb5",
+                        "outline-variant": "#c4c6cd",
+                        "on-error": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "inverse-surface": "#303032",
+                        "surface-tint": "#4d6079",
+                        "surface-container-highest": "#e4e2e4",
+                        "on-tertiary": "#ffffff",
+                        "surface": "#fbf9fb",
+                        "primary-fixed": "#d2e4ff",
+                        "tertiary-container": "#301c00",
+                        "tertiary-fixed-dim": "#e6c093",
+                        "on-tertiary-fixed": "#2a1800",
+                        "on-tertiary-container": "#a28259",
+                        "secondary-container": "#fea619",
+                        "primary-fixed-dim": "#b5c8e5",
+                        "on-secondary-fixed": "#2a1700",
+                        "error": "#ba1a1a",
+                        "on-primary-container": "#7689a4",
+                        "on-background": "#1b1c1d",
+                        "on-primary-fixed-variant": "#364860",
+                        "on-secondary-container": "#684000",
+                        "surface-variant": "#e4e2e4",
+                        "tertiary": "#100700",
+                        "on-surface-variant": "#44474d",
+                        "secondary-fixed-dim": "#ffb95f",
+                        "on-secondary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-md": "24px",
+                        "base": "8px",
+                        "section-padding": "80px",
+                        "card-padding": "32px",
+                        "gutter": "24px",
+                        "stack-sm": "12px",
+                        "stack-lg": "48px",
+                        "container-max": "1200px"
+                    },
+                    "fontFamily": {
+                        "headline-xl": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "caption": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-xl": ["40px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "label-md": ["14px", { "lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "caption": ["12px", { "lineHeight": "1.4", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.25", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface font-body-md antialiased h-screen overflow-hidden flex">
+<!-- SideNavBar -->
+<nav class="docked left-0 top-0 h-screen w-64 border-r bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 shadow-[4px_0px_20px_rgba(13,33,55,0.02)] flex flex-col h-full py-6 z-50 fixed">
+<div class="px-6 mb-8 flex items-center space-x-3">
+<div class="w-8 h-8 rounded bg-primary-container flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">solar_power</span>
+</div>
+<div>
+<h1 class="text-xl font-black text-[#0D2137] dark:text-white tracking-tighter">Solar Config</h1>
+<p class="font-['Inter'] text-sm font-medium text-slate-500">Installateur Dashboard</p>
+</div>
+</div>
+<ul class="flex-1 px-4 space-y-1 font-['Inter'] text-sm font-medium">
+<li>
+<a class="flex items-center px-4 py-3 rounded-lg text-slate-500 dark:text-slate-400 hover:text-[#0D2137] dark:hover:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all duration-200 active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined mr-3">view_kanban</span>
+                    Lead-Pipeline
+                </a>
+</li>
+<li>
+<a class="flex items-center px-4 py-3 rounded-lg text-slate-500 dark:text-slate-400 hover:text-[#0D2137] dark:hover:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all duration-200 active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined mr-3">inventory_2</span>
+                    Projektdetails
+                </a>
+</li>
+<li>
+<a class="flex items-center px-4 py-3 rounded-lg bg-slate-50 dark:bg-slate-800 text-[#0D2137] dark:text-[#F59E0B] border-r-4 border-[#F59E0B] hover:bg-slate-50 dark:hover:bg-slate-800 transition-all duration-200 active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined mr-3" style="font-variation-settings: 'FILL' 1;">calendar_month</span>
+                    Kalender
+                </a>
+</li>
+<li>
+<a class="flex items-center px-4 py-3 rounded-lg text-slate-500 dark:text-slate-400 hover:text-[#0D2137] dark:hover:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all duration-200 active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined mr-3">equalizer</span>
+                    Statistiken
+                </a>
+</li>
+</ul>
+</nav>
+<!-- Main Wrapper -->
+<div class="flex-1 flex flex-col ml-64 relative w-[calc(100%-256px)]">
+<!-- TopAppBar -->
+<header class="sticky top-0 z-40 w-full border-b bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-slate-100 dark:border-slate-800 flat no-shadows flex items-center justify-between px-8 h-16">
+<div class="flex items-center font-['Inter'] text-sm text-[#0D2137] dark:text-slate-100">
+<!-- Search Bar on left -->
+<div class="relative flex items-center group">
+<span class="material-symbols-outlined absolute left-3 text-slate-400 group-focus-within:text-[#F59E0B]">search</span>
+<input class="pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:outline-none focus-within:ring-2 focus-within:ring-[#F59E0B] transition-all w-64" placeholder="Termine suchen..." type="text"/>
+</div>
+</div>
+<div class="hidden">Installateur-Portal</div>
+<div class="flex items-center space-x-2">
+<button class="p-2 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+<div class="ml-4 w-9 h-9 rounded-full bg-slate-200 overflow-hidden border border-slate-300">
+<img alt="User Profile Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBe4vT3cZ8we3GEtHaxTOLzQPsmB5u-2LvgZloeCJoje-snCqwx4ctuZO3qA-vWsDhPLP7IvIkp3I1UTiYIpEpnxXvZYHtEDFfYZVLj3wELv3YlzjmaMKzm2HpGdHMDJm4m2D-_7EuIYZDh5tOYzskJjfUp9onkLVIvCvDRs3HL4x0iqW1Zpyiibba8_1GUlJnM0CI-fWPOoegwaZW0PQSQbQlsK1TBtI1zect88cT9B-FjMhf4j8qQr2UiKcxYEwBLnMkG0pEPllU"/>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 overflow-y-auto p-8 bg-surface-bright">
+<div class="max-w-container-max mx-auto">
+<!-- Calendar Header & Controls -->
+<div class="flex items-center justify-between mb-8">
+<div class="flex items-center space-x-4">
+<h2 class="font-headline-lg text-headline-lg text-primary-container">Oktober 2023</h2>
+<div class="flex space-x-1">
+<button class="p-2 rounded hover:bg-surface-container transition-colors text-on-surface-variant"><span class="material-symbols-outlined">chevron_left</span></button>
+<button class="p-2 rounded hover:bg-surface-container transition-colors text-on-surface-variant"><span class="material-symbols-outlined">chevron_right</span></button>
+</div>
+</div>
+<div class="flex items-center space-x-4">
+<button class="px-4 py-2 border border-outline-variant rounded-lg font-label-md text-label-md text-primary-container hover:bg-surface-container transition-colors">
+                            Heute
+                        </button>
+<div class="flex p-1 bg-surface-container rounded-lg border border-outline-variant/50">
+<button class="px-4 py-1.5 rounded-md font-label-md text-label-md bg-surface-container-lowest shadow-sm text-primary-container">Monat</button>
+<button class="px-4 py-1.5 rounded-md font-label-md text-label-md text-on-surface-variant hover:text-primary-container">Woche</button>
+<button class="px-4 py-1.5 rounded-md font-label-md text-label-md text-on-surface-variant hover:text-primary-container">Tag</button>
+</div>
+</div>
+</div>
+<!-- Filters -->
+<div class="flex items-center space-x-3 mb-6">
+<span class="font-label-md text-label-md text-outline">Filter:</span>
+<button class="flex items-center space-x-2 px-3 py-1.5 rounded-full bg-primary-fixed border border-primary-fixed-dim text-on-primary-fixed-variant text-sm font-medium hover:opacity-90 transition-opacity">
+<div class="w-2 h-2 rounded-full bg-primary-container"></div>
+<span>Beratung</span>
+</button>
+<button class="flex items-center space-x-2 px-3 py-1.5 rounded-full bg-secondary-fixed border border-secondary-fixed-dim text-on-secondary-fixed-variant text-sm font-medium hover:opacity-90 transition-opacity">
+<div class="w-2 h-2 rounded-full bg-secondary-container"></div>
+<span>Installation</span>
+</button>
+<button class="flex items-center space-x-2 px-3 py-1.5 rounded-full bg-tertiary-fixed border border-tertiary-fixed-dim text-on-tertiary-fixed-variant text-sm font-medium hover:opacity-90 transition-opacity">
+<div class="w-2 h-2 rounded-full bg-tertiary-container"></div>
+<span>Abnahme</span>
+</button>
+</div>
+<!-- Calendar Grid -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-[0px_4px_20px_rgba(13,33,55,0.05)] overflow-hidden flex flex-col h-[700px]">
+<!-- Days Header -->
+<div class="grid grid-cols-7 border-b border-outline-variant bg-surface-container-low/50">
+<div class="py-3 text-center font-label-md text-label-md text-on-surface-variant">Mo</div>
+<div class="py-3 text-center font-label-md text-label-md text-on-surface-variant">Di</div>
+<div class="py-3 text-center font-label-md text-label-md text-on-surface-variant">Mi</div>
+<div class="py-3 text-center font-label-md text-label-md text-on-surface-variant">Do</div>
+<div class="py-3 text-center font-label-md text-label-md text-on-surface-variant">Fr</div>
+<div class="py-3 text-center font-label-md text-label-md text-on-surface-variant">Sa</div>
+<div class="py-3 text-center font-label-md text-label-md text-on-surface-variant">So</div>
+</div>
+<!-- Days Grid -->
+<div class="flex-1 grid grid-cols-7 grid-rows-5 bg-outline-variant gap-px">
+<!-- Week 1 -->
+<div class="bg-surface-container-lowest p-2 flex flex-col min-h-0"><span class="text-sm text-outline font-medium mb-1">25</span></div>
+<div class="bg-surface-container-lowest p-2 flex flex-col min-h-0"><span class="text-sm text-outline font-medium mb-1">26</span></div>
+<div class="bg-surface-container-lowest p-2 flex flex-col min-h-0"><span class="text-sm text-outline font-medium mb-1">27</span></div>
+<div class="bg-surface-container-lowest p-2 flex flex-col min-h-0"><span class="text-sm text-outline font-medium mb-1">28</span></div>
+<div class="bg-surface-container-lowest p-2 flex flex-col min-h-0"><span class="text-sm text-outline font-medium mb-1">29</span></div>
+<div class="bg-surface-container-lowest p-2 flex flex-col min-h-0"><span class="text-sm text-outline font-medium mb-1">30</span></div>
+<div class="bg-surface-container-lowest p-2 flex flex-col min-h-0"><span class="text-sm text-on-surface font-medium mb-1">1</span></div>
+<!-- Week 2 -->
+<div class="bg-surface-container-lowest p-2 flex flex-col min-h-0"><span class="text-sm text-on-surface font-medium mb-1">2</span></div>
+<div class="bg-surface-container-lowest p-2 flex flex-col min-h-0">
+<span class="text-sm text-on-surface font-medium mb-1 flex items-center justify-between">
+                                3
+                            </span>
+<!-- Event: Beratung -->
+<div class="mt-1 px-2 py-1.5 rounded bg-primary-fixed border-l-4 border-primary-container text-xs cursor-pointer hover:shadow-md transition-shadow">
+<div class="font-semibold text-on-primary-fixed-variant truncate">Familie Weber</div>
+<div class="text-on-primary-container truncate opacity-80">10:00 - Beratung</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-2 flex flex-col min-h-0"><span class="text-sm text-on-surface font-medium mb-1">4</span></div>
+<div class="bg-surface-container-lowest p-2 flex flex-col min-h-0 relative">
+<span class="text-sm text-on-surface font-medium mb-1">5</span>
+<!-- Event: Installation Start -->
+<div class="mt-1 px-2 py-1.5 rounded-l bg-secondary-fixed border-l-4 border-secondary-container text-xs absolute right-0 left-2 z-10 cursor-pointer hover:shadow-md transition-shadow border-r border-secondary-fixed-dim">
+<div class="font-semibold text-on-secondary-fixed-variant truncate">Müller GmbH</div>
+<div class="text-on-secondary-container truncate opacity-80">Installation Tag 1</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-2 flex flex-col min-h-0 relative">
+<span class="text-sm text-on-surface font-medium mb-1">6</span>
+<!-- Event: Installation End -->
+<div class="mt-1 px-2 py-1.5 rounded-r bg-secondary-fixed text-xs absolute left-0 right-2 z-10 cursor-pointer hover:shadow-md transition-shadow">
+<div class="font-semibold text-on-secondary-fixed-variant truncate text-transparent select-none">Müller GmbH</div>
+<div class="text-on-secondary-container truncate opacity-80">Installation Tag 2</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-2 flex flex-col min-h-0"><span class="text-sm text-on-surface font-medium mb-1">7</span></div>
+<div class="bg-surface-container-lowest p-2 flex flex-col min-h-0"><span class="text-sm text-on-surface font-medium mb-1">8</span></div>
+<!-- Week 3 -->
+<div class="bg-surface-container-lowest p-2 flex flex-col min-h-0"><span class="text-sm text-on-surface font-medium mb-1">9</span></div>
+<div class="bg-surface-container-lowest p-2 flex flex-col min-h-0"><span class="text-sm text-on-surface font-medium mb-1">10</span></div>
+<div class="bg-surface-container-lowest p-2 flex flex-col min-h-0">
+<span class="text-sm text-on-surface font-medium mb-1">11</span>
+<!-- Event: Abnahme -->
+<div class="mt-1 px-2 py-1.5 rounded bg-tertiary-fixed border-l-4 border-tertiary-container text-xs cursor-pointer hover:shadow-md transition-shadow">
+<div class="font-semibold text-on-tertiary-fixed-variant truncate">Schulz EFH</div>
+<div class="text-on-tertiary-container truncate opacity-80">14:00 - Abnahme</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-2 flex flex-col min-h-0"><span class="text-sm text-on-surface font-medium mb-1">12</span></div>
+<div class="bg-surface-container-lowest p-2 flex flex-col min-h-0"><span class="text-sm text-on-surface font-medium mb-1">13</span></div>
+<div class="bg-surface-container-lowest p-2 flex flex-col min-h-0"><span class="text-sm text-on-surface font-medium mb-1">14</span></div>
+<div class="bg-surface-container-lowest p-2 flex flex-col min-h-0"><span class="text-sm text-on-surface font-medium mb-1">15</span></div>
+<!-- Week 4 -->
+<div class="bg-surface-container-lowest p-2 flex flex-col min-h-0"><span class="text-sm text-on-surface font-medium mb-1">16</span></div>
+<div class="bg-surface-container-lowest p-2 flex flex-col min-h-0"><span class="text-sm text-on-surface font-medium mb-1">17</span></div>
+<div class="bg-surface-container-lowest p-2 flex flex-col min-h-0"><span class="text-sm text-on-surface font-medium mb-1">18</span></div>
+<div class="bg-surface-container-lowest p-2 flex flex-col min-h-0"><span class="text-sm text-on-surface font-medium mb-1">19</span></div>
+<div class="bg-surface-container-lowest p-2 flex flex-col min-h-0"><span class="text-sm text-on-surface font-medium mb-1">20</span></div>
+<div class="bg-surface-container-lowest p-2 flex flex-col min-h-0"><span class="text-sm text-on-surface font-medium mb-1">21</span></div>
+<div class="bg-surface-container-lowest p-2 flex flex-col min-h-0"><span class="text-sm text-on-surface font-medium mb-1">22</span></div>
+<!-- Week 5 -->
+<div class="bg-surface-container-lowest p-2 flex flex-col min-h-0"><span class="text-sm text-on-surface font-medium mb-1">23</span></div>
+<div class="bg-surface-container-lowest p-2 flex flex-col min-h-0"><span class="text-sm text-on-surface font-medium mb-1">24</span></div>
+<div class="bg-surface-container-lowest p-2 flex flex-col min-h-0"><span class="text-sm text-on-surface font-medium mb-1">25</span></div>
+<div class="bg-surface-container-lowest p-2 flex flex-col min-h-0"><span class="text-sm text-on-surface font-medium mb-1">26</span></div>
+<div class="bg-surface-container-lowest p-2 flex flex-col min-h-0"><span class="text-sm text-on-surface font-medium mb-1">27</span></div>
+<div class="bg-surface-container-lowest p-2 flex flex-col min-h-0"><span class="text-sm text-on-surface font-medium mb-1">28</span></div>
+<div class="bg-surface-container-lowest p-2 flex flex-col min-h-0"><span class="text-sm text-on-surface font-medium mb-1">29</span></div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

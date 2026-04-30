@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+
+<html class="light" lang="de"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Statistik-Dashboard - SolarPro Installateur</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-variant": "#e4e2e4",
+                        "on-secondary-container": "#684000",
+                        "secondary-fixed-dim": "#ffb95f",
+                        "on-secondary": "#ffffff",
+                        "tertiary": "#100700",
+                        "on-surface-variant": "#44474d",
+                        "on-primary-container": "#7689a4",
+                        "on-background": "#1b1c1d",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed-variant": "#364860",
+                        "tertiary-fixed-dim": "#e6c093",
+                        "on-tertiary-fixed": "#2a1800",
+                        "on-tertiary-container": "#a28259",
+                        "tertiary-container": "#301c00",
+                        "primary-fixed": "#d2e4ff",
+                        "secondary-container": "#fea619",
+                        "primary-fixed-dim": "#b5c8e5",
+                        "on-secondary-fixed": "#2a1700",
+                        "surface-tint": "#4d6079",
+                        "inverse-surface": "#303032",
+                        "surface": "#fbf9fb",
+                        "surface-container-highest": "#e4e2e4",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed": "#ffddb5",
+                        "inverse-on-surface": "#f2f0f2",
+                        "surface-container-high": "#e9e7ea",
+                        "on-error": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "outline-variant": "#c4c6cd",
+                        "on-surface": "#1b1c1d",
+                        "surface-bright": "#fbf9fb",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container": "#efedef",
+                        "on-error-container": "#93000a",
+                        "on-primary": "#ffffff",
+                        "surface-dim": "#dbd9dc",
+                        "outline": "#74777d",
+                        "on-tertiary-fixed-variant": "#5c421f",
+                        "primary": "#000917",
+                        "background": "#fbf9fb",
+                        "secondary-fixed": "#ffddb8",
+                        "secondary": "#855300",
+                        "primary-container": "#0d2137",
+                        "surface-container-low": "#f5f3f5",
+                        "inverse-primary": "#b5c8e5",
+                        "on-primary-fixed": "#081c32",
+                        "on-secondary-fixed-variant": "#653e00"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-lg": "48px",
+                        "container-max": "1200px",
+                        "stack-sm": "12px",
+                        "gutter": "24px",
+                        "section-padding": "80px",
+                        "card-padding": "32px",
+                        "stack-md": "24px",
+                        "base": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-xl": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "caption": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "1.25", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-xl": ["40px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "label-md": ["14px", { "lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "caption": ["12px", { "lineHeight": "1.4", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: #F8F9FA; }
+        .card-shadow { box-shadow: 0px 4px 20px rgba(13, 33, 55, 0.05); }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen">
+<!-- TopAppBar (Mobile & Web) -->
+<header class="bg-white dark:bg-slate-900 shadow-sm fixed top-0 right-0 left-0 z-40 flex items-center justify-between px-6 h-16 border-b border-slate-200 dark:border-slate-800 md:hidden">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface cursor-pointer md:hidden">menu</span>
+<span class="text-xl font-bold text-slate-900 dark:text-white font-headline-md">SolarPro Installateur</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-amber-600 dark:text-amber-500 cursor-pointer active:opacity-80 transition-all hover:bg-slate-50 dark:hover:bg-slate-800 p-2 rounded-full">notifications</span>
+<span class="material-symbols-outlined text-amber-600 dark:text-amber-500 cursor-pointer active:opacity-80 transition-all hover:bg-slate-50 dark:hover:bg-slate-800 p-2 rounded-full">settings</span>
+<img alt="Installateur Profilbild" class="w-8 h-8 rounded-full border border-slate-200 dark:border-slate-800 object-cover" data-alt="close-up portrait of a professional male installer with a friendly smile, well-lit, shallow depth of field" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDpt7QxzII3LYpX8B96OTIouVL_RvFtTOzTt-4ASeUDRbvCn61u3RL6ts-3P2-wNZnK88Qt9ysbQRbKm9aZtMpgpXoHinY7sOs5qWasJw-MpylNNa1ZxYTaXA7FzUVJqk5sWXr7cw_kodjhpIyh1sREH66KLDholzAWQ88MOUYhzy4HihxzCAxYRuXP_WCHpjZpVLdyDHeoIRwCnHPzNx7dxaZ6HUIgBkY5OZ3riKj0JHV_tG4MT4SDsiInhg44AvEuIBrliQCngk"/>
+</div>
+</header>
+<div class="flex h-screen pt-16 md:pt-0">
+<!-- SideNavBar (Web Only) -->
+<nav class="hidden md:flex bg-slate-50 dark:bg-slate-950 flex-col w-64 border-r border-slate-200 dark:border-slate-800 z-50 pt-4 pb-8 h-screen fixed left-0 top-0">
+<div class="px-6 mb-8 flex flex-col gap-2">
+<div class="flex items-center gap-3">
+<img alt="Unternehmenslogo" class="w-10 h-10 rounded-lg object-cover" data-alt="professional corporate logo or office building fragment, clean aesthetic, bright lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1lJsRO5lVgUWUCunqVufRzwpWq6dSoTskoJG8adahf4zjVJbQ70pT3apJV-K5Xp5vxr6sA48hIwBKrr21AAB2tZTgjDRSIrqhj-jgVFATNxCmRXbR5WrIsKR_ClePbk9QE0mRBY-Uv8aalYdhY0Wnv5kopo9txP8ZnXM5_by98JlTG-Zis0W5PQiT7IbsEgQIk5TBpvoeNzbAjZFnHNe5UtHcfjk571NO_YgzVTbbm5VH7KHv2BmzwUT9TJWRRbkVyC017Ri76t4"/>
+<div>
+<h2 class="font-headline-md text-[16px] font-bold text-slate-900 dark:text-white">PV Montage Nord</h2>
+<span class="font-caption text-amber-600 dark:text-amber-500 text-[12px]">Premium Partner</span>
+</div>
+</div>
+</div>
+<div class="px-4 mb-6">
+<button class="w-full bg-amber-500 hover:bg-amber-600 text-slate-900 font-label-md font-bold py-2 px-4 rounded-lg flex items-center justify-center gap-2 transition-colors duration-200 ease-in-out shadow-sm">
+<span class="material-symbols-outlined text-[20px]">add</span>
+                    Neues Projekt
+                </button>
+</div>
+<div class="flex-1 overflow-y-auto">
+<ul class="flex flex-col font-sans text-sm font-semibold">
+<li>
+<a class="flex items-center gap-3 text-slate-600 dark:text-slate-400 py-3 px-4 hover:bg-slate-100 dark:hover:bg-slate-900 hover:text-slate-900 dark:hover:text-white transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">filter_list</span>
+                            Lead-Pipeline
+                        </a>
+</li>
+<li>
+<a class="flex items-center gap-3 text-slate-600 dark:text-slate-400 py-3 px-4 hover:bg-slate-100 dark:hover:bg-slate-900 hover:text-slate-900 dark:hover:text-white transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">architecture</span>
+                            Projektdetails
+                        </a>
+</li>
+<li>
+<a class="flex items-center gap-3 text-slate-600 dark:text-slate-400 py-3 px-4 hover:bg-slate-100 dark:hover:bg-slate-900 hover:text-slate-900 dark:hover:text-white transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">calendar_today</span>
+                            Kalender
+                        </a>
+</li>
+<li>
+<a class="flex items-center gap-3 text-amber-600 dark:text-amber-500 border-r-4 border-amber-600 bg-white dark:bg-slate-900 py-3 px-4 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">query_stats</span>
+                            Statistiken
+                        </a>
+</li>
+</ul>
+</div>
+<div class="mt-auto border-t border-slate-200 dark:border-slate-800 pt-4">
+<ul class="flex flex-col font-sans text-sm font-semibold">
+<li>
+<a class="flex items-center gap-3 text-slate-600 dark:text-slate-400 py-3 px-4 hover:bg-slate-100 dark:hover:bg-slate-900 hover:text-slate-900 dark:hover:text-white transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">help</span>
+                            Hilfe
+                        </a>
+</li>
+<li>
+<a class="flex items-center gap-3 text-slate-600 dark:text-slate-400 py-3 px-4 hover:bg-slate-100 dark:hover:bg-slate-900 hover:text-slate-900 dark:hover:text-white transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">logout</span>
+                            Abmelden
+                        </a>
+</li>
+</ul>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="flex-1 md:ml-64 p-6 md:p-gutter overflow-y-auto">
+<div class="max-w-container-max mx-auto">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-stack-lg gap-4">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-primary-container">Statistik-Dashboard</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Leistungsübersicht und KPIs für den aktuellen Monat.</p>
+</div>
+<div class="flex gap-3">
+<select class="bg-surface border border-outline-variant text-on-surface text-sm rounded-lg focus:ring-secondary-container focus:border-secondary-container block w-full p-2.5">
+<option>Dieser Monat</option>
+<option>Letzter Monat</option>
+<option>Q3 2023</option>
+<option>Jahr 2023</option>
+</select>
+<button class="bg-white border border-outline-variant text-on-surface hover:bg-surface-container-low font-label-md px-4 py-2 rounded-lg flex items-center gap-2 shadow-sm transition-colors">
+<span class="material-symbols-outlined text-[18px]">download</span>
+                            Export
+                        </button>
+</div>
+</div>
+<!-- Bento Grid KPIs -->
+<div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-8">
+<!-- KPI 1: Leads -->
+<div class="bg-surface-container-lowest rounded-xl p-6 card-shadow border border-surface-variant col-span-1 lg:col-span-2 flex flex-col justify-between">
+<div class="flex justify-between items-start mb-4">
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant">Monatliche Leads</p>
+<h3 class="font-headline-xl text-headline-xl text-primary-container mt-1">142</h3>
+</div>
+<span class="material-symbols-outlined text-secondary-container bg-secondary-fixed p-2 rounded-lg">group_add</span>
+</div>
+<div class="flex items-center gap-2 text-sm text-emerald-600 font-medium">
+<span class="material-symbols-outlined text-[16px]">trending_up</span>
+<span>+12% zum Vormonat</span>
+</div>
+</div>
+<!-- KPI 2: Conversion -->
+<div class="bg-primary-container rounded-xl p-6 shadow-md col-span-1 flex flex-col justify-between relative overflow-hidden">
+<div class="absolute top-0 right-0 p-4 opacity-10">
+<span class="material-symbols-outlined text-white text-6xl">published_with_changes</span>
+</div>
+<div class="relative z-10 flex justify-between items-start mb-4">
+<div>
+<p class="font-label-md text-label-md text-primary-fixed-dim">Conversion-Rate</p>
+<h3 class="font-headline-xl text-headline-xl text-white mt-1">28.5%</h3>
+</div>
+</div>
+<div class="relative z-10 flex flex-col gap-1">
+<div class="w-full bg-surface-tint rounded-full h-1.5">
+<div class="bg-secondary-container h-1.5 rounded-full" style="width: 28.5%"></div>
+</div>
+<p class="font-caption text-caption text-primary-fixed-dim mt-1">Lead zu Auftrag</p>
+</div>
+</div>
+<!-- KPI 3: Avg Order Value -->
+<div class="bg-surface-container-lowest rounded-xl p-6 card-shadow border border-surface-variant col-span-1 flex flex-col justify-between">
+<div class="flex justify-between items-start mb-4">
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant">Ø Auftragswert</p>
+<h3 class="font-headline-md text-headline-md text-primary-container mt-1">24.5k €</h3>
+</div>
+<span class="material-symbols-outlined text-secondary-container bg-secondary-fixed p-2 rounded-lg">euro_symbol</span>
+</div>
+<div class="flex items-center gap-2 text-sm text-emerald-600 font-medium">
+<span class="material-symbols-outlined text-[16px]">trending_up</span>
+<span>+4%</span>
+</div>
+</div>
+</div>
+<!-- Charts Area -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+<!-- Left: Bar Chart Placeholder (Leads Overview) -->
+<div class="bg-surface-container-lowest rounded-xl p-6 card-shadow border border-surface-variant lg:col-span-2">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-headline-md text-headline-md text-primary-container text-[20px]">Lead-Entwicklung</h3>
+<button class="text-secondary hover:text-on-secondary-container transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<!-- Decorative Chart Area -->
+<div class="h-64 flex items-end gap-2 pb-4 border-b border-surface-variant relative">
+<!-- Y-Axis Labels -->
+<div class="absolute left-0 top-0 bottom-4 flex flex-col justify-between text-xs text-on-surface-variant pt-2 w-8">
+<span>150</span>
+<span>100</span>
+<span>50</span>
+<span>0</span>
+</div>
+<div class="flex-1 flex items-end justify-around pl-10 h-full">
+<div class="w-1/12 bg-primary-container rounded-t-sm" style="height: 40%;"></div>
+<div class="w-1/12 bg-primary-container rounded-t-sm" style="height: 55%;"></div>
+<div class="w-1/12 bg-primary-container rounded-t-sm" style="height: 45%;"></div>
+<div class="w-1/12 bg-primary-container rounded-t-sm" style="height: 70%;"></div>
+<div class="w-1/12 bg-primary-container rounded-t-sm" style="height: 60%;"></div>
+<div class="w-1/12 bg-secondary-container rounded-t-sm" style="height: 85%;"></div>
+</div>
+</div>
+<!-- X-Axis Labels -->
+<div class="flex justify-around pl-10 mt-2 text-xs text-on-surface-variant font-medium">
+<span>Jan</span>
+<span>Feb</span>
+<span>Mär</span>
+<span>Apr</span>
+<span>Mai</span>
+<span class="text-primary-container font-bold">Jun</span>
+</div>
+</div>
+<!-- Right: Two smaller KPI Cards stacked -->
+<div class="flex flex-col gap-6 lg:col-span-1">
+<!-- Gesamtleistung -->
+<div class="bg-surface-container-lowest rounded-xl p-6 card-shadow border border-surface-variant flex-1 flex flex-col justify-center">
+<div class="flex items-center gap-4 mb-3">
+<div class="p-3 bg-surface-variant rounded-full text-primary-container">
+<span class="material-symbols-outlined">solar_power</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant">Installierte Leistung</p>
+<h3 class="font-headline-md text-headline-md text-primary-container">1.2 MWp</h3>
+</div>
+</div>
+<div class="text-sm text-on-surface-variant pl-16">
+<p>Jahresziel: 2.0 MWp (60%)</p>
+<div class="w-full bg-surface-variant rounded-full h-1 mt-2">
+<div class="bg-primary-container h-1 rounded-full" style="width: 60%"></div>
+</div>
+</div>
+</div>
+<!-- CO2 Impact -->
+<div class="bg-surface-container-lowest rounded-xl p-6 card-shadow border border-surface-variant flex-1 flex flex-col justify-center">
+<div class="flex items-center gap-4 mb-3">
+<div class="p-3 bg-emerald-50 rounded-full text-emerald-600">
+<span class="material-symbols-outlined">eco</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant">CO2-Impact</p>
+<h3 class="font-headline-md text-headline-md text-primary-container">450 t</h3>
+</div>
+</div>
+<div class="text-sm text-on-surface-variant pl-16">
+<p>Kumulierte Einsparung</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

@@ -1,0 +1,4 @@
+@import "tailwindcss";
+@config "../tailwind.config.js";
+
+/* Design system is handled by Tailwind classes */

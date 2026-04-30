@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+
+<html lang="de"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SolarPro - Projektdetails</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-variant": "#e4e2e4",
+                        "on-secondary-container": "#684000",
+                        "secondary-fixed-dim": "#ffb95f",
+                        "on-secondary": "#ffffff",
+                        "tertiary": "#100700",
+                        "on-surface-variant": "#44474d",
+                        "on-primary-container": "#7689a4",
+                        "on-background": "#1b1c1d",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed-variant": "#364860",
+                        "tertiary-fixed-dim": "#e6c093",
+                        "on-tertiary-fixed": "#2a1800",
+                        "on-tertiary-container": "#a28259",
+                        "tertiary-container": "#301c00",
+                        "primary-fixed": "#d2e4ff",
+                        "secondary-container": "#fea619",
+                        "primary-fixed-dim": "#b5c8e5",
+                        "on-secondary-fixed": "#2a1700",
+                        "surface-tint": "#4d6079",
+                        "inverse-surface": "#303032",
+                        "surface": "#fbf9fb",
+                        "surface-container-highest": "#e4e2e4",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed": "#ffddb5",
+                        "inverse-on-surface": "#f2f0f2",
+                        "surface-container-high": "#e9e7ea",
+                        "on-error": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "outline-variant": "#c4c6cd",
+                        "on-surface": "#1b1c1d",
+                        "surface-bright": "#fbf9fb",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container": "#efedef",
+                        "on-error-container": "#93000a",
+                        "on-primary": "#ffffff",
+                        "surface-dim": "#dbd9dc",
+                        "outline": "#74777d",
+                        "on-tertiary-fixed-variant": "#5c421f",
+                        "primary": "#000917",
+                        "background": "#fbf9fb",
+                        "secondary-fixed": "#ffddb8",
+                        "secondary": "#855300",
+                        "primary-container": "#0d2137",
+                        "surface-container-low": "#f5f3f5",
+                        "inverse-primary": "#b5c8e5",
+                        "on-primary-fixed": "#081c32",
+                        "on-secondary-fixed-variant": "#653e00"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    spacing: {
+                        "stack-lg": "48px",
+                        "container-max": "1200px",
+                        "stack-sm": "12px",
+                        "gutter": "24px",
+                        "section-padding": "80px",
+                        "card-padding": "32px",
+                        "stack-md": "24px",
+                        "base": "8px"
+                    },
+                    fontFamily: {
+                        "headline-lg": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-xl": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "caption": ["Inter"]
+                    },
+                    fontSize: {
+                        "headline-lg": ["32px", { "lineHeight": "1.25", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-xl": ["40px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "label-md": ["14px", { "lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "caption": ["12px", { "lineHeight": "1.4", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md text-body-md antialiased min-h-screen">
+<div class="fixed left-0 top-0 h-full flex flex-col z-50 pt-4 pb-8 bg-slate-50 dark:bg-slate-950 text-amber-600 dark:text-amber-500 font-sans text-sm font-semibold w-64 border-r border-slate-200 dark:border-slate-800">
+<div class="px-6 mb-8 flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-white shadow-sm flex items-center justify-center overflow-hidden">
+<img alt="Unternehmenslogo" class="w-full h-full object-cover" data-alt="minimalist geometric sun and roof logo for a solar company, clean design, white background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJUDPcxxKOIThKnfSxSSL8AYM9FCPmTTfxIMCISxOtQsb9ahZCGlGfupEh457tDHKSNlRO1oQIRJpXpD7njOJBUBfis5jVuw5gwMK3nG8vQvqamx_2E82FPk9te2GXKlBOdanV5_C6ZOXb8UN5zzV3Ui7DOSxou0JL4RFrsxrTNQyJ48xUyIdF50IoXZ25Z7aPCKDbyPrD_nWPjIE_qIgA21XTmJc_iuFPhRPeJIuqXy0B-nEYsI9JmWqnnjsK0AibzsDJKfuONbk"/>
+</div>
+<div>
+<div class="text-slate-900 font-bold text-base">PV Montage Nord</div>
+<div class="text-slate-500 text-xs font-normal">Premium Partner</div>
+</div>
+</div>
+<div class="px-4 mb-6">
+<button class="w-full flex items-center justify-center gap-2 bg-amber-600 text-white rounded-lg py-2.5 px-4 font-semibold hover:bg-amber-700 transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[20px]">add</span>
+                Neues Projekt
+            </button>
+</div>
+<nav class="flex-1 flex flex-col gap-1 px-2">
+<a class="flex items-center gap-3 text-slate-600 dark:text-slate-400 py-3 px-4 hover:bg-slate-100 dark:hover:bg-slate-900 hover:text-slate-900 dark:hover:text-white transition-all duration-200 ease-in-out rounded-lg" href="#">
+<span class="material-symbols-outlined text-[22px]">filter_list</span>
+<span>Lead-Pipeline</span>
+</a>
+<a class="flex items-center gap-3 text-amber-600 dark:text-amber-500 border-r-4 border-amber-600 bg-white dark:bg-slate-900 py-3 px-4 hover:text-slate-900 dark:hover:text-white transition-all duration-200 ease-in-out rounded-lg shadow-sm" href="#">
+<span class="material-symbols-outlined text-[22px] fill">architecture</span>
+<span>Projektdetails</span>
+</a>
+<a class="flex items-center gap-3 text-slate-600 dark:text-slate-400 py-3 px-4 hover:bg-slate-100 dark:hover:bg-slate-900 hover:text-slate-900 dark:hover:text-white transition-all duration-200 ease-in-out rounded-lg" href="#">
+<span class="material-symbols-outlined text-[22px]">calendar_today</span>
+<span>Kalender</span>
+</a>
+<a class="flex items-center gap-3 text-slate-600 dark:text-slate-400 py-3 px-4 hover:bg-slate-100 dark:hover:bg-slate-900 hover:text-slate-900 dark:hover:text-white transition-all duration-200 ease-in-out rounded-lg" href="#">
+<span class="material-symbols-outlined text-[22px]">query_stats</span>
+<span>Statistiken</span>
+</a>
+</nav>
+<div class="mt-auto flex flex-col gap-1 px-2">
+<a class="flex items-center gap-3 text-slate-600 dark:text-slate-400 py-3 px-4 hover:bg-slate-100 dark:hover:bg-slate-900 hover:text-slate-900 dark:hover:text-white transition-all duration-200 ease-in-out rounded-lg" href="#">
+<span class="material-symbols-outlined text-[22px]">help</span>
+<span>Hilfe</span>
+</a>
+<a class="flex items-center gap-3 text-slate-600 dark:text-slate-400 py-3 px-4 hover:bg-slate-100 dark:hover:bg-slate-900 hover:text-slate-900 dark:hover:text-white transition-all duration-200 ease-in-out rounded-lg" href="#">
+<span class="material-symbols-outlined text-[22px]">logout</span>
+<span>Abmelden</span>
+</a>
+</div>
+</div>
+<div class="fixed top-0 right-0 left-0 z-40 flex items-center justify-between px-6 h-16 bg-white dark:bg-slate-900 text-amber-600 dark:text-amber-500 font-sans text-sm font-medium tracking-tight border-b border-slate-200 dark:border-slate-800 shadow-sm md:pl-[280px]">
+<div class="flex items-center gap-4 w-1/3">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 text-slate-900 text-sm" placeholder="Suchen..." type="text"/>
+</div>
+</div>
+<div class="text-xl font-bold text-slate-900 dark:text-white absolute left-1/2 -translate-x-1/2 md:hidden">
+            SolarPro Installateur
+        </div>
+<div class="flex items-center gap-2">
+<button class="p-2 text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors rounded-full cursor-pointer active:opacity-80">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors rounded-full cursor-pointer active:opacity-80 mr-2">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-slate-200 cursor-pointer">
+<img alt="Installateur Profilbild" class="w-full h-full object-cover" data-alt="professional headshot of a mature caucasian man in a light blue button down shirt, neutral background, soft lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBt_MrlsvFgooP9rCJXkIcE656Gb4z9BtiWR_GLWovwyfZGs4imVbVx7MFLfF3UZjqwb3ekU22fpC5ReyDH6TqQSO28F2VVfZIlJU2dsyMw1ntu-dokMjr0E8P9WnepkulYCfZr3WoN_TW7el1Hr1Wzps_YNSWEp0dJ7-6GMK0c3zWIYoAcq4YChjVe8THHW01S1KK_Unyk8_vGeF9qq3WAMOGuZIp8WVSXY_LMyjdr-6B2nPHmlVr3ZcXI6xC65UhihWthXDnGB00"/>
+</div>
+</div>
+</div>
+<main class="ml-64 mt-16 p-8 min-h-[calc(100vh-64px)] bg-background">
+<div class="max-w-container-max mx-auto">
+<header class="flex flex-col md:flex-row md:items-center justify-between mb-stack-lg gap-4">
+<div>
+<div class="flex items-center gap-3 mb-2">
+<span class="bg-primary-fixed text-on-primary-fixed font-label-md text-label-md px-3 py-1 rounded-full">In Planung</span>
+<span class="text-on-surface-variant font-caption text-caption">Projekt-ID: PRJ-2023-089</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface">Max Mustermann PV Anlage</h1>
+</div>
+<div class="flex items-center gap-3">
+<button class="border border-primary-container text-primary-container font-label-md text-label-md px-4 py-2 rounded-lg hover:bg-surface-container-low transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+                        Bearbeiten
+                    </button>
+<button class="bg-secondary-container text-on-secondary-container font-label-md text-label-md px-4 py-2 rounded-lg hover:opacity-90 transition-opacity flex items-center gap-2 shadow-[0px_4px_20px_rgba(13,33,55,0.1)]">
+<span class="material-symbols-outlined text-[18px]">check_circle</span>
+                        Planung abschließen
+                    </button>
+</div>
+</header>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<div class="lg:col-span-5 flex flex-col gap-gutter">
+<section class="bg-surface rounded-xl shadow-[0px_4px_20px_rgba(13,33,55,0.03)] border border-outline-variant p-card-padding">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-stack-md flex items-center gap-2 border-b border-surface-variant pb-4">
+<span class="material-symbols-outlined text-on-surface-variant">person</span>
+                            Kundendaten
+                        </h2>
+<div class="flex items-start gap-4 mb-6">
+<div class="w-16 h-16 rounded-full bg-surface-container-high flex items-center justify-center text-on-surface-variant font-headline-md text-headline-md">
+                                MM
+                            </div>
+<div>
+<h3 class="font-body-lg text-body-lg text-on-surface font-semibold">Max Mustermann</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Privatkunde</p>
+</div>
+</div>
+<div class="space-y-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-low flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-[18px]">mail</span>
+</div>
+<div>
+<div class="font-caption text-caption text-on-surface-variant">E-Mail</div>
+<a class="font-body-md text-body-md text-primary-container hover:underline" href="mailto:m.mustermann@example.com">m.mustermann@example.com</a>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-low flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-[18px]">phone</span>
+</div>
+<div>
+<div class="font-caption text-caption text-on-surface-variant">Telefon</div>
+<a class="font-body-md text-body-md text-on-surface hover:underline" href="tel:+491234567890">+49 123 456 7890</a>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-low flex items-center justify-center text-primary-container shrink-0 mt-1">
+<span class="material-symbols-outlined text-[18px]">location_on</span>
+</div>
+<div>
+<div class="font-caption text-caption text-on-surface-variant">Installationsort</div>
+<div class="font-body-md text-body-md text-on-surface">Sonnenallee 42<br/>10115 Berlin<br/>Deutschland</div>
+</div>
+</div>
+</div>
+</section>
+<section class="bg-surface rounded-xl shadow-[0px_4px_20px_rgba(13,33,55,0.03)] border border-outline-variant p-card-padding">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-stack-md flex items-center gap-2 border-b border-surface-variant pb-4">
+<span class="material-symbols-outlined text-on-surface-variant">solar_power</span>
+                            Konfigurations-Zusammenfassung
+                        </h2>
+<div class="bg-primary-container rounded-lg p-6 mb-6 text-on-primary flex items-center justify-between">
+<div>
+<div class="font-caption text-caption opacity-80 mb-1">Geplante Anlagenleistung</div>
+<div class="font-headline-xl text-headline-xl text-secondary-container">10.4 <span class="text-xl font-normal">kWp</span></div>
+</div>
+<span class="material-symbols-outlined text-[48px] opacity-20">bolt</span>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-surface-container-low p-4 rounded-lg border border-surface-variant">
+<div class="flex items-center gap-2 mb-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]">roofing</span>
+<span class="font-label-md text-label-md">Dachtyp</span>
+</div>
+<div class="font-body-md text-body-md text-on-surface font-semibold">Satteldach</div>
+</div>
+<div class="bg-surface-container-low p-4 rounded-lg border border-surface-variant">
+<div class="flex items-center gap-2 mb-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]">explore</span>
+<span class="font-label-md text-label-md">Ausrichtung</span>
+</div>
+<div class="font-body-md text-body-md text-on-surface font-semibold">Süd (180°)</div>
+</div>
+<div class="bg-surface-container-low p-4 rounded-lg border border-surface-variant">
+<div class="flex items-center gap-2 mb-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]">battery_charging_full</span>
+<span class="font-label-md text-label-md">Speicher</span>
+</div>
+<div class="font-body-md text-body-md text-on-surface font-semibold">Ja (10 kWh)</div>
+</div>
+<div class="bg-surface-container-low p-4 rounded-lg border border-surface-variant">
+<div class="flex items-center gap-2 mb-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]">electric_car</span>
+<span class="font-label-md text-label-md">Wallbox</span>
+</div>
+<div class="font-body-md text-body-md text-on-surface font-semibold">Nein</div>
+</div>
+</div>
+</section>
+</div>
+<div class="lg:col-span-7 flex flex-col gap-gutter">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<section class="bg-surface rounded-xl shadow-[0px_4px_20px_rgba(13,33,55,0.03)] border border-outline-variant p-card-padding">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-stack-md flex items-center gap-2">
+<span class="material-symbols-outlined text-on-surface-variant">analytics</span>
+                                Projektstatus
+                            </h2>
+<div class="relative">
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2" for="status-select">Aktueller Status</label>
+<select class="w-full appearance-none bg-surface border border-outline-variant text-on-surface font-body-md text-body-md rounded-lg pl-4 pr-10 py-3 focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-colors" id="status-select">
+<option value="lead">Lead generiert</option>
+<option selected="" value="planung">In Planung</option>
+<option value="angebot">Angebot versendet</option>
+<option value="bestaetigt">Auftrag bestätigt</option>
+<option value="montage">In Montage</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-[38px] text-on-surface-variant pointer-events-none">expand_more</span>
+</div>
+</section>
+<section class="bg-surface rounded-xl shadow-[0px_4px_20px_rgba(13,33,55,0.03)] border border-outline-variant p-card-padding flex flex-col justify-center items-center text-center border-dashed border-2">
+<div class="w-12 h-12 rounded-full bg-surface-container-low flex items-center justify-center text-primary-container mb-4">
+<span class="material-symbols-outlined text-[24px]">upload_file</span>
+</div>
+<h3 class="font-label-md text-label-md text-on-surface mb-1">Dokumente hochladen</h3>
+<p class="font-caption text-caption text-on-surface-variant mb-4">Zählerfoto, Dachpläne, etc.</p>
+<button class="bg-surface-variant text-on-surface-variant font-label-md text-label-md px-4 py-2 rounded-lg hover:bg-surface-dim transition-colors">
+                                Datei auswählen
+                            </button>
+</section>
+</div>
+<section class="bg-surface rounded-xl shadow-[0px_4px_20px_rgba(13,33,55,0.03)] border border-outline-variant p-card-padding">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-stack-md flex items-center gap-2 border-b border-surface-variant pb-4">
+<span class="material-symbols-outlined text-on-surface-variant">edit_note</span>
+                            Interne Notizen
+                        </h2>
+<textarea class="w-full h-32 bg-surface-container-low border border-outline-variant rounded-lg p-4 font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container resize-none" placeholder="Notizen zur Dachbeschaffenheit, Kundenwünschen oder Besonderheiten..."></textarea>
+<div class="flex justify-end mt-4">
+<button class="bg-primary-container text-on-primary font-label-md text-label-md px-4 py-2 rounded-lg hover:opacity-90 transition-opacity">Speichern</button>
+</div>
+</section>
+<section class="bg-surface rounded-xl shadow-[0px_4px_20px_rgba(13,33,55,0.03)] border border-outline-variant p-card-padding flex-1 flex flex-col">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-stack-md flex items-center gap-2 border-b border-surface-variant pb-4">
+<span class="material-symbols-outlined text-on-surface-variant">forum</span>
+                            Kommunikation
+                        </h2>
+<div class="flex-1 overflow-y-auto space-y-6 mb-6 pr-2">
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center text-on-surface-variant font-label-md text-label-md shrink-0">
+                                    MM
+                                </div>
+<div class="flex-1 bg-surface-container-low rounded-2xl rounded-tl-none p-4 border border-surface-variant">
+<div class="flex justify-between items-center mb-2">
+<span class="font-label-md text-label-md text-on-surface">Max Mustermann</span>
+<span class="font-caption text-caption text-on-surface-variant">Gestern, 14:30</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface">Guten Tag, können wir den Speicher auch nachträglich noch vergrößern, falls wir uns in 2 Jahren ein E-Auto anschaffen?</p>
+</div>
+</div>
+<div class="flex items-start gap-4 flex-row-reverse">
+<div class="w-10 h-10 rounded-full overflow-hidden shrink-0 border border-surface-variant">
+<img alt="Dein Profilbild" class="w-full h-full object-cover" data-alt="professional headshot of a mature caucasian man in a light blue button down shirt, neutral background, soft lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAifa7LZAa2AI6UFlUl1S04zAM_gO185ZkHCRYFbpFKS4Z81IrN0RTWWSBbhcdXeZcoCQ-HA7Q5NG2sWIWIXbSY6mXXdIMUC240nlEb1MwFWpTfWjc57BvPAb0du_ZI-ZBqVKIs174A2yRuDXpqU1I4tR8kiMnrWLiXGwlt3E76A_FEeJB4W07vxfPDByj9V_CwoBnAYdpFPkEPVMuNYEQ8SoHpgdlOoZ8IkP9D-YOXhMk6n1CAj3sC36103v7ZLOy5kdNZ8MvdjDE"/>
+</div>
+<div class="flex-1 bg-primary-container text-on-primary rounded-2xl rounded-tr-none p-4">
+<div class="flex justify-between items-center mb-2">
+<span class="font-label-md text-label-md text-primary-fixed">Du</span>
+<span class="font-caption text-caption text-primary-fixed-dim">Gestern, 15:45</span>
+</div>
+<p class="font-body-md text-body-md">Hallo Herr Mustermann, ja, das ist bei dem von uns geplanten System problemlos möglich. Wir planen den Wechselrichter so, dass er entsprechende Reserven hat.</p>
+</div>
+</div>
+</div>
+<div class="relative mt-auto">
+<input class="w-full bg-surface border border-outline-variant text-on-surface font-body-md text-body-md rounded-full pl-6 pr-14 py-3 focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container" placeholder="Nachricht an den Kunden..." type="text"/>
+<button class="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-secondary-container text-on-secondary-container rounded-full flex items-center justify-center hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined text-[18px]">send</span>
+</button>
+</div>
+</section>
+</div>
+</div>
+</div>
+</main>
+</body></html>

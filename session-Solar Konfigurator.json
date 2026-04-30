@@ -1,0 +1,57 @@
+{
+  "project": "Solar Konfigurator",
+  "path": "/Users/hoanghavu/myprojects/Solar Konfigurator/",
+  "last_updated": "2026-04-29T15:00:00",
+  "version": "0.1.0",
+  "status": "active",
+  "current_phase": "Phase 1 — Konfigurator (Code-Gerüst vollständig, Logik & Backend ausstehend)",
+  "stack": {
+    "framework": "Vite + React 19",
+    "styling": "Tailwind CSS v4",
+    "language": "TypeScript",
+    "package_manager": "npm",
+    "fonts": "Inter",
+    "icons": "Material Symbols Outlined"
+  },
+  "stitch": {
+    "project_id": "3955599241460119046",
+    "url": "https://stitch.google.com/projects/3955599241460119046"
+  },
+  "design": {
+    "theme": "Corporate Modern",
+    "colors": {
+      "navy": "#0D2137",
+      "orange": "#F59E0B",
+      "background": "#FBF9FB",
+      "white": "#FFFFFF",
+      "text": "#1B1C1D",
+      "border": "#C4C6CD"
+    }
+  },
+  "progress": {
+    "completed": [
+      "DNA Bereich 1 (Projekt-Brief)",
+      "DNA Bereich 2 (Tech-Stack)",
+      "DNA Bereich 3 (Seiten-Baum)",
+      "Komponenten-Gerüst (alle Steps, Pages, Hooks)",
+      "DESIGN.md",
+      "Maps (map-homepage, map-configurator, map-layout)",
+      "Pflichtdateien via sync"
+    ],
+    "in_progress": [],
+    "pending": [
+      "Dev-Server testen + Stitch-Abgleich",
+      "ROI-Berechnungslogik (useConfigurator.ts)",
+      "PLZ-API Einstrahlungsdaten",
+      "Förderungen-Daten (StepGrants)",
+      "Lead-Formular Backend (DSGVO)",
+      "Deployment (Vercel/Netlify)"
+    ]
+  },
+  "next_steps": [
+    "npm run dev → Wizard komplett testen",
+    "Stitch-Design-Abgleich",
+    "ROI-Berechnungslogik prüfen/verfeinern"
+  ],
+  "active_map": "docs/maps/map-configurator.md"
+}

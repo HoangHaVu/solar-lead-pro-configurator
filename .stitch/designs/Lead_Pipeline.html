@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+
+<html class="light" lang="de"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SolarPro Installateur - Lead-Pipeline</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-variant": "#e4e2e4",
+                        "on-secondary-container": "#684000",
+                        "secondary-fixed-dim": "#ffb95f",
+                        "on-secondary": "#ffffff",
+                        "tertiary": "#100700",
+                        "on-surface-variant": "#44474d",
+                        "on-primary-container": "#7689a4",
+                        "on-background": "#1b1c1d",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed-variant": "#364860",
+                        "tertiary-fixed-dim": "#e6c093",
+                        "on-tertiary-fixed": "#2a1800",
+                        "on-tertiary-container": "#a28259",
+                        "tertiary-container": "#301c00",
+                        "primary-fixed": "#d2e4ff",
+                        "secondary-container": "#fea619",
+                        "primary-fixed-dim": "#b5c8e5",
+                        "on-secondary-fixed": "#2a1700",
+                        "surface-tint": "#4d6079",
+                        "inverse-surface": "#303032",
+                        "surface": "#fbf9fb",
+                        "surface-container-highest": "#e4e2e4",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed": "#ffddb5",
+                        "inverse-on-surface": "#f2f0f2",
+                        "surface-container-high": "#e9e7ea",
+                        "on-error": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "outline-variant": "#c4c6cd",
+                        "on-surface": "#1b1c1d",
+                        "surface-bright": "#fbf9fb",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container": "#efedef",
+                        "on-error-container": "#93000a",
+                        "on-primary": "#ffffff",
+                        "surface-dim": "#dbd9dc",
+                        "outline": "#74777d",
+                        "on-tertiary-fixed-variant": "#5c421f",
+                        "primary": "#0d2137", /* Re-mapped primary to primary-container hex for better visibility in light mode based on brand desc */
+                        "background": "#fbf9fb",
+                        "secondary-fixed": "#ffddb8",
+                        "secondary": "#f59e0b", /* Mapped secondary to orange brand color */
+                        "primary-container": "#0d2137",
+                        "surface-container-low": "#f5f3f5",
+                        "inverse-primary": "#b5c8e5",
+                        "on-primary-fixed": "#081c32",
+                        "on-secondary-fixed-variant": "#653e00"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-lg": "48px",
+                        "container-max": "1200px",
+                        "stack-sm": "12px",
+                        "gutter": "24px",
+                        "section-padding": "80px",
+                        "card-padding": "32px",
+                        "stack-md": "24px",
+                        "base": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-xl": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "caption": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "1.25", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-xl": ["40px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["20px", { "lineHeight": "1.3", "fontWeight": "600" }], /* Adjusted size for better card fit */
+                        "body-md": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }], /* Adjusted for dashboard density */
+                        "label-md": ["14px", { "lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "caption": ["12px", { "lineHeight": "1.4", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .fill-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+        
+        /* Custom scrollbar for Kanban board */
+        .kanban-scroll::-webkit-scrollbar {
+            height: 8px;
+        }
+        .kanban-scroll::-webkit-scrollbar-track {
+            background: theme('colors.surface-container-low');
+            border-radius: theme('borderRadius.full');
+        }
+        .kanban-scroll::-webkit-scrollbar-thumb {
+            background: theme('colors.outline-variant');
+            border-radius: theme('borderRadius.full');
+        }
+        .kanban-scroll::-webkit-scrollbar-thumb:hover {
+            background: theme('colors.outline');
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md overflow-hidden">
+<!-- TopAppBar -->
+<header class="fixed top-0 right-0 left-0 z-40 flex items-center justify-between px-6 h-16 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="flex items-center">
+<!-- Space left for SideNav overlap -->
+<div class="w-64 hidden md:block"></div>
+<div class="flex items-center gap-2 cursor-pointer active:opacity-80 transition-all hover:bg-slate-50 dark:hover:bg-slate-800 p-2 rounded-lg ml-4">
+<span class="material-symbols-outlined text-amber-600 dark:text-amber-500">search</span>
+<span class="font-sans text-sm font-medium tracking-tight text-slate-500 dark:text-slate-400">Suchen...</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined cursor-pointer active:opacity-80 transition-all hover:bg-slate-50 dark:hover:bg-slate-800 p-2 rounded-full text-amber-600 dark:text-amber-500">notifications</span>
+<span class="material-symbols-outlined cursor-pointer active:opacity-80 transition-all hover:bg-slate-50 dark:hover:bg-slate-800 p-2 rounded-full text-amber-600 dark:text-amber-500">settings</span>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-slate-200">
+<img alt="Installateur Profilbild" class="w-full h-full object-cover" data-alt="close-up portrait of a professional male installer in a modern office" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSCGmDHiURPzxxnB6xk1TYIA1IqcJsu_BgFukWlGoxrsm6UF_GkXd7wX7P38OVwbfo5xRIGNaRiWFQdjBEXALYCkDkzPFQAkoveLSXy0y1eeX6QotaugGuSrgV1tX8nmlflZ41hye0cl0XjEaiRCHKMX7gcMfptRY7QtW6K1Twdhyj4N3dicTX9shHkMB-ONHR9JPvxu1IAMD7qM-A-sFuNtTPf8l_GIglOKemzxWrvWg1yhnVsRAQk6W-vF1H_wtfJ4K0BlDTKD4"/>
+</div>
+</div>
+</header>
+<!-- SideNavBar -->
+<nav class="fixed left-0 top-0 h-full flex flex-col z-50 pt-4 pb-8 bg-slate-50 dark:bg-slate-950 border-r border-slate-200 dark:border-slate-800 w-64 shadow-none">
+<div class="px-6 mb-8 flex flex-col items-start gap-2">
+<div class="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center text-on-primary font-bold text-xl">
+                PM
+            </div>
+<div>
+<h1 class="text-xl font-bold text-slate-900 dark:text-white">PV Montage Nord</h1>
+<p class="font-sans text-sm font-semibold text-amber-600 dark:text-amber-500">Premium Partner</p>
+</div>
+</div>
+<div class="px-4 mb-6">
+<button class="w-full bg-amber-600 hover:bg-amber-700 text-white font-sans text-sm font-semibold py-2 px-4 rounded-lg flex items-center justify-center gap-2 transition-colors duration-200 ease-in-out shadow-sm">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                Neues Projekt
+            </button>
+</div>
+<div class="flex-1 flex flex-col">
+<!-- Active Tab -->
+<a class="flex items-center gap-3 text-amber-600 dark:text-amber-500 border-r-4 border-amber-600 bg-white dark:bg-slate-900 py-3 px-4 duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="filter_list">filter_list</span>
+<span class="font-sans text-sm font-semibold">Lead-Pipeline</span>
+</a>
+<!-- Inactive Tabs -->
+<a class="flex items-center gap-3 text-slate-600 dark:text-slate-400 py-3 px-4 hover:bg-slate-100 dark:hover:bg-slate-900 hover:text-slate-900 dark:hover:text-white transition-all duration-200 ease-in-out border-r-4 border-transparent" href="#">
+<span class="material-symbols-outlined" data-icon="architecture">architecture</span>
+<span class="font-sans text-sm font-semibold">Projektdetails</span>
+</a>
+<a class="flex items-center gap-3 text-slate-600 dark:text-slate-400 py-3 px-4 hover:bg-slate-100 dark:hover:bg-slate-900 hover:text-slate-900 dark:hover:text-white transition-all duration-200 ease-in-out border-r-4 border-transparent" href="#">
+<span class="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
+<span class="font-sans text-sm font-semibold">Kalender</span>
+</a>
+<a class="flex items-center gap-3 text-slate-600 dark:text-slate-400 py-3 px-4 hover:bg-slate-100 dark:hover:bg-slate-900 hover:text-slate-900 dark:hover:text-white transition-all duration-200 ease-in-out border-r-4 border-transparent" href="#">
+<span class="material-symbols-outlined" data-icon="query_stats">query_stats</span>
+<span class="font-sans text-sm font-semibold">Statistiken</span>
+</a>
+</div>
+<div class="flex flex-col mt-auto">
+<a class="flex items-center gap-3 text-slate-600 dark:text-slate-400 py-3 px-4 hover:bg-slate-100 dark:hover:bg-slate-900 hover:text-slate-900 dark:hover:text-white transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+<span class="font-sans text-sm font-semibold">Hilfe</span>
+</a>
+<a class="flex items-center gap-3 text-slate-600 dark:text-slate-400 py-3 px-4 hover:bg-slate-100 dark:hover:bg-slate-900 hover:text-slate-900 dark:hover:text-white transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-sans text-sm font-semibold">Abmelden</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="ml-64 pt-16 h-screen flex flex-col bg-surface overflow-hidden">
+<!-- Header & Filters -->
+<div class="px-8 py-6 bg-surface-container-lowest border-b border-outline-variant shrink-0">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-1">Lead-Pipeline</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Verwalte deine Projektanfragen und beschleunige den Vertriebsprozess.</p>
+</div>
+</div>
+<!-- Filter Bar -->
+<div class="flex flex-wrap gap-4 items-end bg-surface p-4 rounded-lg border border-outline-variant">
+<div class="flex flex-col gap-1 w-full sm:w-auto min-w-[150px]">
+<label class="font-label-md text-label-md text-on-surface-variant" for="filter-plz">Postleitzahl</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[20px]">location_on</span>
+<input class="w-full bg-surface-container-lowest border border-outline-variant text-on-surface rounded-md pl-10 pr-3 py-2 focus:border-primary-container focus:ring-1 focus:ring-primary-container outline-none transition-colors font-body-md text-body-md" id="filter-plz" placeholder="z.B. 20457" type="text"/>
+</div>
+</div>
+<div class="flex flex-col gap-1 w-full sm:w-auto min-w-[200px]">
+<label class="font-label-md text-label-md text-on-surface-variant" for="filter-size">Min. Anlagengröße</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[20px]">solar_power</span>
+<select class="w-full bg-surface-container-lowest border border-outline-variant text-on-surface rounded-md pl-10 pr-8 py-2 focus:border-primary-container focus:ring-1 focus:ring-primary-container outline-none appearance-none transition-colors font-body-md text-body-md" id="filter-size">
+<option value="">Alle Größen</option>
+<option value="5">Ab 5 kWp</option>
+<option value="10">Ab 10 kWp</option>
+<option value="15">Ab 15 kWp</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline pointer-events-none">expand_more</span>
+</div>
+</div>
+<div class="flex flex-col gap-1 w-full sm:w-auto min-w-[180px]">
+<label class="font-label-md text-label-md text-on-surface-variant" for="filter-date">Eingangsdatum ab</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[20px]">calendar_month</span>
+<input class="w-full bg-surface-container-lowest border border-outline-variant text-on-surface rounded-md pl-10 pr-3 py-2 focus:border-primary-container focus:ring-1 focus:ring-primary-container outline-none transition-colors font-body-md text-body-md" id="filter-date" type="date"/>
+</div>
+</div>
+<div class="w-full sm:w-auto sm:ml-auto">
+<button class="w-full sm:w-auto bg-surface-container border border-outline-variant hover:bg-surface-dim text-on-surface font-label-md text-label-md py-2 px-6 rounded-md transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">filter_alt_off</span>
+                        Filter zurücksetzen
+                    </button>
+</div>
+</div>
+</div>
+<!-- Kanban Board -->
+<div class="flex-1 overflow-hidden p-8 flex flex-col bg-surface-container-low">
+<div class="flex-1 flex gap-6 overflow-x-auto kanban-scroll pb-4 items-start">
+<!-- Column: Neu -->
+<div class="flex-shrink-0 w-[320px] flex flex-col max-h-full">
+<div class="flex items-center justify-between mb-4 px-2">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-secondary"></div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Neu</h3>
+<span class="bg-surface-variant text-on-surface-variant font-caption text-caption px-2 py-0.5 rounded-full">3</span>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto pr-2 space-y-4 pb-10">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest rounded-lg p-5 border border-outline-variant shadow-sm hover:shadow-md hover:border-secondary transition-all cursor-grab group">
+<div class="flex justify-between items-start mb-3">
+<h4 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary-container transition-colors">Familie Müller</h4>
+<button class="text-outline hover:text-primary-container"><span class="material-symbols-outlined text-[20px]">more_vert</span></button>
+</div>
+<div class="space-y-2 mb-4">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">location_on</span>
+<span class="font-body-md text-body-md">22765 Hamburg</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">solar_power</span>
+<span class="font-body-md text-body-md">8.5 kWp • Satteldach</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-3 border-t border-surface-variant">
+<div class="font-label-md text-label-md text-primary-container font-bold">16.500 €</div>
+<div class="font-caption text-caption text-outline">Heute, 09:30</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-lowest rounded-lg p-5 border border-outline-variant shadow-sm hover:shadow-md hover:border-secondary transition-all cursor-grab group">
+<div class="flex justify-between items-start mb-3">
+<h4 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary-container transition-colors">Johannes Schmidt</h4>
+<button class="text-outline hover:text-primary-container"><span class="material-symbols-outlined text-[20px]">more_vert</span></button>
+</div>
+<div class="space-y-2 mb-4">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">location_on</span>
+<span class="font-body-md text-body-md">20251 Hamburg</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">solar_power</span>
+<span class="font-body-md text-body-md">12.0 kWp • Flachdach</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-3 border-t border-surface-variant">
+<div class="font-label-md text-label-md text-primary-container font-bold">22.800 €</div>
+<div class="font-caption text-caption text-outline">Gestern, 14:15</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Column: Kontaktiert -->
+<div class="flex-shrink-0 w-[320px] flex flex-col max-h-full">
+<div class="flex items-center justify-between mb-4 px-2">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-primary-fixed-dim"></div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Kontaktiert</h3>
+<span class="bg-surface-variant text-on-surface-variant font-caption text-caption px-2 py-0.5 rounded-full">1</span>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto pr-2 space-y-4 pb-10">
+<!-- Card -->
+<div class="bg-surface-container-lowest rounded-lg p-5 border border-outline-variant shadow-sm hover:shadow-md hover:border-primary-fixed-dim transition-all cursor-grab group">
+<div class="flex justify-between items-start mb-3">
+<h4 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary-container transition-colors">Elena Wagner</h4>
+<button class="text-outline hover:text-primary-container"><span class="material-symbols-outlined text-[20px]">more_vert</span></button>
+</div>
+<div class="space-y-2 mb-4">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">location_on</span>
+<span class="font-body-md text-body-md">21079 Hamburg</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">solar_power</span>
+<span class="font-body-md text-body-md">6.8 kWp • Walmdach</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-3 border-t border-surface-variant">
+<div class="font-label-md text-label-md text-primary-container font-bold">14.200 €</div>
+<div class="font-caption text-caption text-outline">12. Okt</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Column: Angebot versendet -->
+<div class="flex-shrink-0 w-[320px] flex flex-col max-h-full">
+<div class="flex items-center justify-between mb-4 px-2">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-[#3b82f6]"></div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Angebot versendet</h3>
+<span class="bg-surface-variant text-on-surface-variant font-caption text-caption px-2 py-0.5 rounded-full">2</span>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto pr-2 space-y-4 pb-10">
+<!-- Card -->
+<div class="bg-surface-container-lowest rounded-lg p-5 border border-outline-variant shadow-sm hover:shadow-md hover:border-[#3b82f6] transition-all cursor-grab group">
+<div class="flex justify-between items-start mb-3">
+<h4 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary-container transition-colors">Dr. Becker</h4>
+<button class="text-outline hover:text-primary-container"><span class="material-symbols-outlined text-[20px]">more_vert</span></button>
+</div>
+<div class="space-y-2 mb-4">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">location_on</span>
+<span class="font-body-md text-body-md">22587 Hamburg</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">solar_power</span>
+<span class="font-body-md text-body-md">15.4 kWp • Pultdach</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-3 border-t border-surface-variant">
+<div class="font-label-md text-label-md text-primary-container font-bold">28.500 €</div>
+<div class="font-caption text-caption text-outline text-amber-600 font-medium">Offen (3 Tage)</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Column: In Planung -->
+<div class="flex-shrink-0 w-[320px] flex flex-col max-h-full">
+<div class="flex items-center justify-between mb-4 px-2">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-[#8b5cf6]"></div>
+<h3 class="font-headline-md text-headline-md text-on-surface">In Planung</h3>
+<span class="bg-surface-variant text-on-surface-variant font-caption text-caption px-2 py-0.5 rounded-full">0</span>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto pr-2 space-y-4 pb-10">
+<div class="border-2 border-dashed border-outline-variant rounded-lg p-8 flex flex-col items-center justify-center text-center text-on-surface-variant h-32">
+<span class="font-body-md text-body-md">Keine Projekte in Planung</span>
+</div>
+</div>
+</div>
+<!-- Column: In Installation -->
+<div class="flex-shrink-0 w-[320px] flex flex-col max-h-full">
+<div class="flex items-center justify-between mb-4 px-2">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-[#10b981]"></div>
+<h3 class="font-headline-md text-headline-md text-on-surface">In Installation</h3>
+<span class="bg-surface-variant text-on-surface-variant font-caption text-caption px-2 py-0.5 rounded-full">1</span>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto pr-2 space-y-4 pb-10">
+<!-- Card -->
+<div class="bg-surface-container-lowest rounded-lg p-5 border border-outline-variant shadow-sm hover:shadow-md hover:border-[#10b981] transition-all cursor-grab group">
+<div class="flex justify-between items-start mb-3">
+<h4 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary-container transition-colors">Gewerbepark Nord</h4>
+<button class="text-outline hover:text-primary-container"><span class="material-symbols-outlined text-[20px]">more_vert</span></button>
+</div>
+<div class="space-y-2 mb-4">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">location_on</span>
+<span class="font-body-md text-body-md">22113 Oststeinbek</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">solar_power</span>
+<span class="font-body-md text-body-md">29.9 kWp • Flachdach</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-3 border-t border-surface-variant">
+<div class="font-label-md text-label-md text-primary-container font-bold">45.000 €</div>
+<div class="font-caption text-caption text-[#10b981] font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">build</span>
+                                    Aktiv
+                                </div>
+</div>
+</div>
+</div>
+</div>
+<!-- Column: Abgeschlossen -->
+<div class="flex-shrink-0 w-[320px] flex flex-col max-h-full">
+<div class="flex items-center justify-between mb-4 px-2">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-outline"></div>
+<h3 class="font-headline-md text-headline-md text-on-surface text-outline">Abgeschlossen</h3>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto pr-2 space-y-4 pb-10 opacity-70">
+<!-- Card -->
+<div class="bg-surface-container-lowest rounded-lg p-5 border border-outline-variant shadow-sm cursor-default">
+<div class="flex justify-between items-start mb-3">
+<h4 class="font-headline-md text-headline-md text-on-surface line-through decoration-outline">Sabine Koch</h4>
+</div>
+<div class="space-y-2 mb-4">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">location_on</span>
+<span class="font-body-md text-body-md">22303 Hamburg</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-3 border-t border-surface-variant">
+<div class="font-label-md text-label-md text-outline">9.800 €</div>
+<div class="font-caption text-caption text-outline flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+                                    Beendet
+                                </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+
+<html lang="de"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Kunden-Konto erstellen - SolarKonfigurator</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed-dim": "#b5c8e5",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed-variant": "#653e00",
+                        "inverse-on-surface": "#f2f0f2",
+                        "surface-bright": "#fbf9fb",
+                        "on-error": "#ffffff",
+                        "surface-container-high": "#e9e7ea",
+                        "on-primary-container": "#7689a4",
+                        "on-tertiary-fixed": "#2a1800",
+                        "on-secondary-fixed": "#2a1700",
+                        "secondary-fixed-dim": "#ffb95f",
+                        "primary-fixed": "#d2e4ff",
+                        "inverse-surface": "#303032",
+                        "on-tertiary-container": "#a28259",
+                        "inverse-primary": "#b5c8e5",
+                        "secondary": "#855300",
+                        "on-background": "#1b1c1d",
+                        "tertiary-fixed-dim": "#e6c093",
+                        "on-surface-variant": "#44474d",
+                        "tertiary-container": "#301c00",
+                        "on-secondary": "#ffffff",
+                        "background": "#fbf9fb",
+                        "surface-tint": "#4d6079",
+                        "surface-container-low": "#f5f3f5",
+                        "on-primary-fixed-variant": "#364860",
+                        "surface-dim": "#dbd9dc",
+                        "on-tertiary-fixed-variant": "#5c421f",
+                        "on-primary-fixed": "#081c32",
+                        "tertiary-fixed": "#ffddb5",
+                        "secondary-fixed": "#ffddb8",
+                        "secondary-container": "#fea619",
+                        "primary-container": "#0d2137",
+                        "on-surface": "#1b1c1d",
+                        "surface": "#fbf9fb",
+                        "error-container": "#ffdad6",
+                        "error": "#ba1a1a",
+                        "surface-container": "#efedef",
+                        "surface-container-highest": "#e4e2e4",
+                        "outline": "#74777d",
+                        "primary": "#000917",
+                        "on-tertiary": "#ffffff",
+                        "tertiary": "#100700",
+                        "surface-container-lowest": "#ffffff",
+                        "outline-variant": "#c4c6cd",
+                        "on-secondary-container": "#684000",
+                        "surface-variant": "#e4e2e4",
+                        "on-primary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-sm": "12px",
+                        "stack-lg": "48px",
+                        "base": "8px",
+                        "section-padding": "80px",
+                        "container-max": "1200px",
+                        "stack-md": "24px",
+                        "gutter": "24px",
+                        "card-padding": "32px"
+                    },
+                    "fontFamily": {
+                        "headline-xl": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "caption": ["Inter"],
+                        "label-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-xl": ["40px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.25", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "caption": ["12px", { "lineHeight": "1.4", "fontWeight": "400" }],
+                        "label-md": ["14px", { "lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-surface-container-low min-h-screen flex flex-col font-body-md text-on-surface antialiased selection:bg-secondary-container selection:text-primary-container">
+<!-- Minimal Header for Transactional Canvas -->
+<header class="w-full h-20 px-6 flex items-center justify-between max-w-container-max mx-auto">
+<a class="flex items-center gap-2 group" href="#">
+<span class="material-symbols-outlined text-secondary-container" style="font-variation-settings: 'FILL' 1;">solar_power</span>
+<span class="text-2xl font-black text-primary-container tracking-tighter">SolarKonfigurator</span>
+</a>
+<a class="flex items-center gap-2 text-on-surface-variant hover:text-primary-container transition-colors font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined text-[18px]">arrow_back</span>
+            Zurück
+        </a>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 flex flex-col items-center justify-center p-6 pb-section-padding">
+<div class="w-full max-w-[520px]">
+<!-- Contextual Header -->
+<div class="mb-stack-md text-center">
+<h1 class="font-headline-lg text-headline-lg text-primary-container mb-2">Kunden-Konto erstellen</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Sichere deinen Konfigurationsstand und erhalte dein persönliches Angebot.</p>
+</div>
+<!-- Registration Card -->
+<div class="bg-surface-container-lowest rounded-xl shadow-[0_4px_20px_rgba(13,33,55,0.05)] p-card-padding">
+<form action="#" class="flex flex-col gap-stack-sm" method="POST">
+<!-- Name Fields (Grid on larger screens) -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-stack-sm">
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface-variant" for="vorname">Vorname</label>
+<input class="h-12 px-4 rounded-lg border border-outline-variant bg-surface-container-lowest text-on-surface font-body-md text-body-md focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-all" id="vorname" name="vorname" type="text" value="Max"/>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface-variant" for="nachname">Nachname</label>
+<input class="h-12 px-4 rounded-lg border border-outline-variant bg-surface-container-lowest text-on-surface font-body-md text-body-md focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-all" id="nachname" name="nachname" type="text" value="Mustermann"/>
+</div>
+</div>
+<!-- Email Field -->
+<div class="flex flex-col gap-1.5 mt-2">
+<label class="font-label-md text-label-md text-on-surface-variant" for="email">E-Mail</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline-variant">mail</span>
+<input class="h-12 w-full pl-11 pr-4 rounded-lg border border-outline-variant bg-surface-container-low text-on-surface-variant font-body-md text-body-md cursor-not-allowed opacity-80" id="email" name="email" readonly="" type="email" value="max.mustermann@beispiel.de"/>
+</div>
+<p class="font-caption text-caption text-on-surface-variant flex items-center gap-1.5 mt-1">
+<span class="material-symbols-outlined text-[14px] text-secondary-container">info</span>
+                            Wir senden dir eine Bestätigungs-E-Mail
+                        </p>
+</div>
+<!-- Password Field -->
+<div class="flex flex-col gap-1.5 mt-2">
+<label class="font-label-md text-label-md text-on-surface-variant" for="password">Passwort setzen</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline-variant">lock</span>
+<input class="h-12 w-full pl-11 pr-4 rounded-lg border border-outline-variant bg-surface-container-lowest text-on-surface font-body-md text-body-md focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-all" id="password" name="password" placeholder="Mindestens 8 Zeichen" type="password"/>
+</div>
+</div>
+<!-- Submit Action -->
+<button class="h-14 mt-6 w-full bg-secondary-container text-primary-container rounded-lg font-headline-md text-headline-md !text-[16px] flex items-center justify-center gap-2 hover:bg-[#F59E0B] hover:-translate-y-0.5 transition-all shadow-sm active:scale-[0.98]" type="submit">
+                        Konto erstellen
+                        <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+</form>
+<!-- Trust Signal Integration -->
+<div class="mt-stack-md pt-stack-sm border-t border-outline-variant/30 flex items-center justify-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px] text-secondary-container" style="font-variation-settings: 'FILL' 1;">shield_person</span>
+<span class="font-caption text-caption">100% Datenschutz nach GDPR. Deine Daten sind sicher.</span>
+</div>
+</div>
+</div>
+</main>
+</body></html>

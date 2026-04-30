@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+
+<html lang="de"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Dein individuelles Angebot - SolarConfig</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-low": "#f5f3f5",
+                        "on-tertiary-container": "#a28259",
+                        "secondary": "#855300",
+                        "on-surface-variant": "#44474d",
+                        "primary-container": "#0d2137",
+                        "surface-container": "#efedef",
+                        "surface-container-high": "#e9e7ea",
+                        "primary-fixed-dim": "#b5c8e5",
+                        "on-error": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "on-tertiary": "#ffffff",
+                        "surface-tint": "#4d6079",
+                        "tertiary-fixed": "#ffddb5",
+                        "surface-bright": "#fbf9fb",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-container": "#7689a4",
+                        "primary-fixed": "#d2e4ff",
+                        "outline-variant": "#c4c6cd",
+                        "on-secondary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "on-primary-fixed": "#081c32",
+                        "error": "#ba1a1a",
+                        "inverse-surface": "#303032",
+                        "secondary-fixed-dim": "#ffb95f",
+                        "surface-dim": "#dbd9dc",
+                        "error-container": "#ffdad6",
+                        "on-secondary-container": "#684000",
+                        "primary": "#000917",
+                        "tertiary-container": "#301c00",
+                        "inverse-primary": "#b5c8e5",
+                        "secondary-fixed": "#ffddb8",
+                        "secondary-container": "#fea619",
+                        "surface-variant": "#e4e2e4",
+                        "tertiary-fixed-dim": "#e6c093",
+                        "on-tertiary-fixed-variant": "#5c421f",
+                        "on-surface": "#1b1c1d",
+                        "outline": "#74777d",
+                        "on-primary-fixed-variant": "#364860",
+                        "background": "#fbf9fb",
+                        "on-secondary-fixed": "#2a1700",
+                        "on-secondary-fixed-variant": "#653e00",
+                        "on-tertiary-fixed": "#2a1800",
+                        "surface": "#fbf9fb",
+                        "tertiary": "#100700",
+                        "surface-container-highest": "#e4e2e4",
+                        "inverse-on-surface": "#f2f0f2",
+                        "on-background": "#1b1c1d"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "section-padding": "80px",
+                        "stack-sm": "12px",
+                        "stack-md": "24px",
+                        "card-padding": "32px",
+                        "gutter": "24px",
+                        "stack-lg": "48px",
+                        "container-max": "1200px",
+                        "base": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Inter"],
+                        "caption": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-xl": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "caption": ["12px", { "lineHeight": "1.4", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "headline-xl": ["40px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.25", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "label-md": ["14px", { "lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .ambient-shadow-sm { box-shadow: 0px 4px 20px rgba(13, 33, 55, 0.05); }
+        .ambient-shadow-md { box-shadow: 0px 8px 30px rgba(13, 33, 55, 0.08); }
+        .ambient-shadow-lg { box-shadow: 0px 12px 40px rgba(13, 33, 55, 0.12); }
+    </style>
+</head>
+<body class="bg-surface-container-low text-on-surface antialiased flex flex-col min-h-screen">
+<!-- Shared Component: TopAppBar -->
+<header class="bg-white dark:bg-slate-950 docked full-width top-0 border-b z-50 border-slate-200 dark:border-slate-800 shadow-sm relative">
+<div class="max-w-[1200px] mx-auto px-6 flex items-center justify-between h-20">
+<!-- Brand -->
+<div class="text-xl font-black tracking-tight text-blue-950 dark:text-white">SolarConfig</div>
+<!-- Navigation (All inactive as this is a transactional flow) -->
+<nav class="hidden md:flex items-center gap-8">
+<a class="font-['Inter'] antialiased text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-blue-950 hover:text-amber-600 transition-colors duration-200 active:scale-95 transition-transform" href="#">Vorteile</a>
+<a class="font-['Inter'] antialiased text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-blue-950 hover:text-amber-600 transition-colors duration-200 active:scale-95 transition-transform" href="#">Ablauf</a>
+<a class="font-['Inter'] antialiased text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-blue-950 hover:text-amber-600 transition-colors duration-200 active:scale-95 transition-transform" href="#">Über uns</a>
+</nav>
+<!-- Actions -->
+<div class="flex items-center gap-4">
+<div class="hidden sm:flex gap-3 text-slate-600 dark:text-slate-400">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">verified_user</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">security</span>
+</div>
+<button class="font-['Inter'] antialiased text-sm font-medium bg-amber-500 text-blue-950 px-5 py-2.5 rounded-lg font-bold hover:bg-amber-400 transition-colors">
+                    Jetzt berechnen
+                </button>
+</div>
+</div>
+<!-- Progress Bar (Design System Injection) -->
+<div class="absolute bottom-[-1px] left-0 w-full h-1 bg-surface-variant">
+<div class="h-full bg-secondary-container w-[90%] rounded-r-full transition-all duration-500"></div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow py-section-padding px-6">
+<div class="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Left Column: Lead Form (Bento/Card Style) -->
+<div class="lg:col-span-8 space-y-stack-lg">
+<!-- Header -->
+<div>
+<span class="inline-block bg-primary-container/10 text-primary-container font-label-md text-label-md px-3 py-1 rounded-full mb-stack-sm">Schritt 6 von 6</span>
+<h1 class="font-headline-xl text-headline-xl text-primary mb-stack-sm">Dein individuelles Angebot</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
+                        Fast geschafft! Hinterlasse deine Kontaktdaten, damit unsere Experten dein persönliches PV-Angebot kalkulieren und dir unverbindlich zusenden können.
+                    </p>
+</div>
+<!-- Form Card -->
+<div class="bg-surface-container-lowest rounded-xl ambient-shadow-sm border border-outline-variant/30 p-card-padding">
+<form class="space-y-stack-md">
+<!-- Name Fields -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-stack-sm">
+<div class="flex flex-col gap-base">
+<label class="font-label-md text-label-md text-on-surface" for="firstName">Vorname</label>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3 focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container font-body-md text-body-md transition-colors placeholder:text-outline" id="firstName" placeholder="Max" required="" type="text"/>
+</div>
+<div class="flex flex-col gap-base">
+<label class="font-label-md text-label-md text-on-surface" for="lastName">Nachname</label>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3 focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container font-body-md text-body-md transition-colors placeholder:text-outline" id="lastName" placeholder="Mustermann" required="" type="text"/>
+</div>
+</div>
+<!-- Email Field -->
+<div class="flex flex-col gap-base">
+<label class="font-label-md text-label-md text-on-surface" for="email">E-Mail Adresse</label>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3 focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container font-body-md text-body-md transition-colors placeholder:text-outline" id="email" placeholder="max.mustermann@beispiel.de" required="" type="email"/>
+</div>
+<!-- Phone Field -->
+<div class="flex flex-col gap-base">
+<div class="flex items-center justify-between">
+<label class="font-label-md text-label-md text-on-surface" for="phone">Telefonnummer</label>
+<span class="font-caption text-caption text-outline">Optional</span>
+</div>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3 focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container font-body-md text-body-md transition-colors placeholder:text-outline" id="phone" placeholder="+49 151 23456789" type="tel"/>
+<p class="font-caption text-caption text-on-surface-variant flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[14px]">info</span>
+                                Nur für eventuelle Rückfragen zur Dachbeschaffenheit.
+                            </p>
+</div>
+<!-- Divider -->
+<div class="h-px w-full bg-outline-variant/30 my-stack-md"></div>
+<!-- Options & Consents -->
+<div class="space-y-stack-sm">
+<!-- Zoom Option -->
+<label class="flex items-start gap-4 p-4 rounded-lg border border-outline-variant/50 bg-surface-container hover:bg-surface-container-high transition-colors cursor-pointer group">
+<div class="relative flex items-center justify-center w-6 h-6 mt-0.5 shrink-0">
+<input class="peer appearance-none w-6 h-6 border-2 border-outline rounded bg-surface-container-lowest checked:bg-primary-container checked:border-primary-container focus:ring-2 focus:ring-primary-container/20 transition-all" type="checkbox"/>
+<span class="material-symbols-outlined absolute text-surface-container-lowest opacity-0 peer-checked:opacity-100 pointer-events-none text-[18px]">check</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-primary-container">Zoom-Beratung erwünscht</span>
+<span class="font-body-md text-body-md text-on-surface-variant mt-1">Ich wünsche eine kostenlose, 15-minütige Online-Beratung zu meinem Angebot.</span>
+</div>
+</label>
+<!-- GDPR Consent -->
+<label class="flex items-start gap-4 p-4 cursor-pointer group">
+<div class="relative flex items-center justify-center w-6 h-6 mt-0.5 shrink-0">
+<input class="peer appearance-none w-6 h-6 border-2 border-error rounded bg-surface-container-lowest checked:bg-primary-container checked:border-primary-container focus:ring-2 focus:ring-primary-container/20 transition-all" required="" type="checkbox"/>
+<span class="material-symbols-outlined absolute text-surface-container-lowest opacity-0 peer-checked:opacity-100 pointer-events-none text-[18px]">check</span>
+</div>
+<div class="flex flex-col">
+<span class="font-body-md text-body-md text-on-surface">
+                                        Ich stimme der Verarbeitung meiner Daten gemäß der <a class="text-primary-container font-medium underline decoration-secondary-container underline-offset-4 hover:text-secondary transition-colors" href="#">Datenschutzerklärung</a> zu.*
+                                    </span>
+</div>
+</label>
+</div>
+<!-- Actions -->
+<div class="pt-stack-sm flex flex-col items-center">
+<button class="w-full sm:w-auto min-w-[300px] bg-secondary-container text-primary-container font-label-md text-label-md py-4 px-8 rounded-lg shadow-sm hover:shadow-md hover:bg-secondary-fixed transition-all flex items-center justify-center gap-2 group" type="submit">
+                                Jetzt Angebot unverbindlich anfragen
+                                <span class="material-symbols-outlined text-[20px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+<!-- Trust Badge below CTA -->
+<div class="flex items-center gap-2 mt-stack-sm text-primary-container/80">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">shield_lock</span>
+<span class="font-caption text-caption font-medium">100% Datenschutz gemäß DSGVO</span>
+</div>
+</div>
+</form>
+</div>
+</div>
+<!-- Right Column: Summary & Context (Asymmetric Layout) -->
+<div class="lg:col-span-4 space-y-stack-md">
+<!-- Sticky Container for Desktop -->
+<div class="sticky top-[100px] space-y-stack-md">
+<!-- Configuration Summary -->
+<div class="bg-primary-container text-surface-container-lowest p-card-padding rounded-xl ambient-shadow-md border border-primary-container overflow-hidden relative">
+<!-- Decorative glow -->
+<div class="absolute top-0 right-0 w-32 h-32 bg-secondary-container/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/4"></div>
+<h3 class="font-headline-md text-headline-md mb-stack-md relative z-10">Deine Konfiguration</h3>
+<ul class="space-y-stack-sm mb-stack-lg relative z-10">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary-container text-[24px]" style="font-variation-settings: 'FILL' 1;">home</span>
+<div>
+<p class="font-label-md text-label-md">Dachform</p>
+<p class="font-body-md text-body-md text-primary-fixed-dim">Satteldach, Süd</p>
+</div>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary-container text-[24px]" style="font-variation-settings: 'FILL' 1;">bolt</span>
+<div>
+<p class="font-label-md text-label-md">Strombedarf</p>
+<p class="font-body-md text-body-md text-primary-fixed-dim">ca. 4.500 kWh/Jahr</p>
+</div>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary-container text-[24px]" style="font-variation-settings: 'FILL' 1;">battery_charging_full</span>
+<div>
+<p class="font-label-md text-label-md">Speicher</p>
+<p class="font-body-md text-body-md text-primary-fixed-dim">Mit Batteriespeicher</p>
+</div>
+</li>
+</ul>
+<div class="bg-surface-tint/20 rounded-lg p-5 border border-surface-container-lowest/10 relative z-10 backdrop-blur-sm">
+<p class="font-caption text-caption text-primary-fixed-dim mb-1 uppercase tracking-wider">Erwartete Ersparnis</p>
+<div class="flex items-baseline gap-1">
+<span class="font-headline-lg text-headline-lg text-secondary-container">~ 1.250 €</span>
+<span class="font-body-md text-body-md text-surface-container-lowest/80">/ Jahr</span>
+</div>
+</div>
+</div>
+<!-- Trust Signals Card -->
+<div class="bg-surface-container-lowest p-card-padding rounded-xl ambient-shadow-sm border border-outline-variant/30 text-center">
+<h4 class="font-label-md text-label-md text-on-surface mb-stack-md">Geprüfte Qualität</h4>
+<div class="flex items-center justify-center gap-6 mb-stack-md">
+<!-- TÜV -->
+<div class="flex flex-col items-center gap-2">
+<div class="w-12 h-12 bg-surface-container-low rounded-full flex items-center justify-center border border-outline-variant/50">
+<span class="material-symbols-outlined text-primary-container text-[24px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<span class="font-caption text-caption font-bold text-primary-container">TÜV</span>
+</div>
+<!-- VDE -->
+<div class="flex flex-col items-center gap-2">
+<div class="w-12 h-12 bg-surface-container-low rounded-full flex items-center justify-center border border-outline-variant/50">
+<span class="material-symbols-outlined text-primary-container text-[24px]" style="font-variation-settings: 'FILL' 1;">electric_bolt</span>
+</div>
+<span class="font-caption text-caption font-bold text-primary-container">VDE</span>
+</div>
+<!-- Meisterbetrieb -->
+<div class="flex flex-col items-center gap-2">
+<div class="w-12 h-12 bg-surface-container-low rounded-full flex items-center justify-center border border-outline-variant/50">
+<span class="material-symbols-outlined text-primary-container text-[24px]" style="font-variation-settings: 'FILL' 1;">engineering</span>
+</div>
+<span class="font-caption text-caption font-bold text-primary-container">Meisterbetrieb</span>
+</div>
+</div>
+<p class="font-caption text-caption text-on-surface-variant">
+                            Wir garantieren höchste Standards und arbeiten ausschließlich mit zertifizierten Premium-Partnern.
+                        </p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Shared Component: Footer -->
+<footer class="bg-slate-50 dark:bg-slate-900 full-width mt-20 border-t border-slate-200 dark:border-slate-800 flat no shadows">
+<div class="max-w-[1200px] mx-auto px-6 py-12 flex flex-col md:flex-row justify-between items-center gap-4">
+<div class="font-bold text-slate-900 dark:text-white font-['Inter'] text-xs leading-relaxed">
+                © 2024 SolarConfig. Dein Partner für Photovoltaik. 100% Datenschutz gemäß DSGVO.
+            </div>
+<nav class="flex items-center gap-6">
+<a class="font-['Inter'] text-xs leading-relaxed text-slate-500 hover:text-blue-950 underline decoration-amber-500 underline-offset-4 opacity-100 hover:opacity-80 transition-opacity" href="#">Datenschutz</a>
+<a class="font-['Inter'] text-xs leading-relaxed text-slate-500 hover:text-blue-950 underline decoration-amber-500 underline-offset-4 opacity-100 hover:opacity-80 transition-opacity" href="#">Impressum</a>
+<a class="font-['Inter'] text-xs leading-relaxed text-slate-500 hover:text-blue-950 underline decoration-amber-500 underline-offset-4 opacity-100 hover:opacity-80 transition-opacity" href="#">AGB</a>
+<a class="font-['Inter'] text-xs leading-relaxed text-slate-500 hover:text-blue-950 underline decoration-amber-500 underline-offset-4 opacity-100 hover:opacity-80 transition-opacity" href="#">Kontakt</a>
+</nav>
+</div>
+</footer>
+</body></html>
