@@ -5,6 +5,7 @@ import {
   getStateLabel,
   type Grant,
 } from '../../data/grants';
+import { useRegionalStats } from '../../hooks/useRegionalStats';
 
 interface StepGrantsProps {
   zip: string;
@@ -12,8 +13,16 @@ interface StepGrantsProps {
   onPrev: () => void;
 }
 
+const isCalculated = (grant: Grant) =>
+  grant.id === 'mwst' || grant.id === 'eeg' || (grant.subsidyAmount != null && grant.subsidyAmount > 0);
+
 const GrantCard: React.FC<{ grant: Grant }> = ({ grant }) => (
-  <div className="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 shadow-ambient flex flex-col gap-4 relative overflow-hidden hover:border-primary transition-colors">
+  <a
+    href={grant.url}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 shadow-ambient flex flex-col gap-4 relative overflow-hidden hover:border-primary hover:shadow-md transition-all duration-200 group"
+  >
     <div
       className={`absolute top-0 right-0 px-3 py-1 rounded-bl-xl text-xs font-semibold flex items-center gap-1 ${
         grant.type === 'national'
@@ -32,37 +41,46 @@ const GrantCard: React.FC<{ grant: Grant }> = ({ grant }) => (
     </div>
 
     <div>
-      <h4 className="font-bold text-lg text-primary mb-1">{grant.title}</h4>
+      <h4 className="font-bold text-lg text-primary mb-1 group-hover:underline underline-offset-2">{grant.title}</h4>
       <p className="font-body-md text-body-md text-on-surface-variant text-sm">{grant.description}</p>
     </div>
 
-    <div className="mt-auto pt-4 border-t border-surface-variant flex items-center justify-between">
-      <div className="flex items-center text-secondary-container font-semibold text-sm gap-1">
-        <span className="material-symbols-outlined text-[18px] fill">check_circle</span>
-        Berücksichtigt
-      </div>
-      <span className="text-xs font-semibold text-primary bg-primary/8 px-2 py-1 rounded-full">
+    <div className="mt-auto pt-4 border-t border-surface-variant flex items-center justify-between gap-2">
+      {isCalculated(grant) ? (
+        <div className="flex items-center text-secondary-container font-semibold text-sm gap-1">
+          <span className="material-symbols-outlined text-[18px] fill">check_circle</span>
+          Im Ergebnis enthalten
+        </div>
+      ) : (
+        <div className="flex items-center text-on-surface-variant font-semibold text-sm gap-1">
+          <span className="material-symbols-outlined text-[18px]">info</span>
+          Separates Antragsverfahren
+        </div>
+      )}
+      <span className="shrink-0 text-xs font-semibold text-primary bg-primary/8 px-2 py-1 rounded-full">
         {grant.highlight}
       </span>
     </div>
-  </div>
+  </a>
 );
 
 export const StepGrants: React.FC<StepGrantsProps> = ({ zip, onNext, onPrev }) => {
   const regionalGrants = getRegionalGrants(zip);
   const stateLabel = getStateLabel(zip);
   const totalGrants = NATIONAL_GRANTS.length + regionalGrants.length;
+  const { regionalCount } = useRegionalStats(zip);
+  const zipPrefix = zip.slice(0, 2);
 
   return (
     <div className="flex-1 flex flex-col gap-stack-lg w-full max-w-3xl">
       {/* Progress */}
       <div className="flex flex-col gap-stack-sm">
         <div className="flex justify-between items-center">
-          <span className="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Schritt 3 von 4</span>
+          <span className="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Schritt 4 von 5</span>
           <span className="font-label-md text-label-md text-primary font-bold">Förderungen</span>
         </div>
         <div className="h-2 w-full bg-surface-variant rounded-full overflow-hidden">
-          <div className="h-full bg-secondary-container w-[75%] rounded-full transition-all duration-500 ease-out" />
+          <div className="h-full bg-secondary-container w-[80%] rounded-full transition-all duration-500 ease-out" />
         </div>
       </div>
 
@@ -74,6 +92,14 @@ export const StepGrants: React.FC<StepGrantsProps> = ({ zip, onNext, onPrev }) =
           {zip ? <> (<strong>{zip} — {stateLabel}</strong>)</> : ''} ermittelt.
           Diese werden automatisch in deiner Wirtschaftlichkeitsberechnung berücksichtigt.
         </p>
+        {regionalCount != null && regionalCount > 0 && (
+          <div className="inline-flex items-center gap-2 bg-green-50 border border-green-200 rounded-full px-4 py-2 w-fit mt-1">
+            <span className="material-symbols-outlined text-green-600 text-[18px] fill">groups</span>
+            <span className="text-sm font-semibold text-green-800">
+              {regionalCount} {regionalCount === 1 ? 'Anlage' : 'Anlagen'} im Bereich {zipPrefix}xxx bereits konfiguriert
+            </span>
+          </div>
+        )}
       </div>
 
       {/* Highlight: 0% MwSt */}
@@ -98,7 +124,7 @@ export const StepGrants: React.FC<StepGrantsProps> = ({ zip, onNext, onPrev }) =
             <span className="material-symbols-outlined text-secondary-container">location_on</span>
             Regionale Förderungen — {stateLabel}
           </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-stack-md">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-stack-md">
             {regionalGrants.map((grant) => (
               <GrantCard key={grant.id} grant={grant} />
             ))}
@@ -120,16 +146,16 @@ export const StepGrants: React.FC<StepGrantsProps> = ({ zip, onNext, onPrev }) =
       </div>
 
       {/* Navigation */}
-      <div className="flex justify-between items-center mt-stack-md pt-stack-md border-t border-surface-variant">
+      <div className="flex flex-col-reverse sm:flex-row justify-between items-center mt-stack-md pt-stack-md border-t border-surface-variant gap-3">
         <button
-          className="flex items-center gap-2 text-primary font-label-md text-label-md px-6 py-3 border border-primary rounded-lg hover:bg-surface-container-low transition-colors"
+          className="w-full sm:w-auto flex items-center justify-center gap-2 text-primary font-label-md text-label-md px-6 py-4 sm:py-3 border border-primary rounded-lg hover:bg-surface-container-low transition-colors"
           onClick={onPrev}
         >
           <span className="material-symbols-outlined">arrow_back</span>
           Zurück
         </button>
         <button
-          className="flex items-center gap-2 bg-secondary-container text-on-secondary-container font-label-md text-label-md px-8 py-3 rounded-lg hover:brightness-110 shadow-ambient transition-all active:scale-95"
+          className="w-full sm:w-auto flex items-center justify-center gap-2 bg-secondary-container text-on-secondary-container font-label-md text-label-md px-8 py-4 sm:py-3 rounded-lg hover:brightness-110 shadow-ambient transition-all active:scale-95"
           onClick={onNext}
         >
           Weiter zur Zusammenfassung

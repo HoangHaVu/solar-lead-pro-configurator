@@ -2,7 +2,7 @@ import React from 'react';
 import { CheckCheck, Download, FileText } from 'lucide-react';
 
 interface ChatMessageProps {
-  content: string | React.ReactNode;
+  content?: string | React.ReactNode;
   time: string;
   isOutgoing?: boolean;
   avatar?: string;

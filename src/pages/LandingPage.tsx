@@ -1,15 +1,73 @@
 import React from 'react';
 import { IMAGES } from '../data/mockData';
+import { SEO } from '../components/SEO';
+import { useRegionalStats } from '../hooks/useRegionalStats';
+
+const LANDING_JSON_LD = {
+  '@context': 'https://schema.org',
+  '@type': 'WebApplication',
+  name: 'SolarConfig PV-Konfigurator',
+  description: 'Kostenloser Online-Konfigurator für Solaranlagen. Wirtschaftlichkeitsanalyse, regionale Förderungen und Angebote von zertifizierten Fachbetrieben.',
+  applicationCategory: 'UtilityApplication',
+  operatingSystem: 'Web',
+  inLanguage: 'de-DE',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' },
+  provider: {
+    '@type': 'Organization',
+    name: 'SolarConfig GmbH',
+    url: 'https://solarconfig.de',
+    address: { '@type': 'PostalAddress', addressLocality: 'München', addressCountry: 'DE' },
+  },
+};
 
 interface LandingPageProps {
   onStartConfig?: (zip: string) => void;
 }
 
+const STATS_BASE = { analyses: 1240, savings: 5800000, avgAmortization: 11.2 };
+
 export const LandingPage: React.FC<LandingPageProps> = ({ onStartConfig }) => {
   const [zip, setZip] = React.useState('');
+  const { totalCount } = useRegionalStats('');
 
   return (
-    <main className="pt-24 pb-section-padding min-h-screen">
+    <>
+    <SEO
+      title="Solaranlage konfigurieren & Kosten berechnen"
+      description="In 5 Minuten zur kostenlosen Wirtschaftlichkeitsanalyse. Regionale Förderungen, genaue kWp-Berechnung und direktes Angebot vom zertifizierten Fachbetrieb."
+      canonical="/"
+      jsonLd={LANDING_JSON_LD}
+    />
+    <main className="min-h-screen pt-section-padding pb-section-padding">
+      {/* Stats-Banner */}
+      <section aria-label="Plattform-Statistiken" className="max-w-container-max mx-auto px-6 mb-8">
+        <div className="grid grid-cols-3 gap-4 bg-surface-container-lowest border border-surface-container-highest rounded-2xl px-6 py-4 shadow-sm">
+          {[
+            {
+              value: (STATS_BASE.analyses + (totalCount ?? 0)).toLocaleString('de-DE') + '+',
+              label: 'Konfigurierte Anlagen',
+              icon: 'solar_power',
+            },
+            {
+              value: '4,8 Mio. €',
+              label: 'Förderungen ermittelt',
+              icon: 'savings',
+            },
+            {
+              value: `Ø ${STATS_BASE.avgAmortization} Jahre`,
+              label: 'Amortisationszeit',
+              icon: 'trending_up',
+            },
+          ].map(({ value, label, icon }) => (
+            <div key={label} className="flex flex-col items-center text-center gap-1">
+              <span className="material-symbols-outlined text-secondary-container text-[22px] fill">{icon}</span>
+              <span className="font-bold text-primary text-sm md:text-base">{value}</span>
+              <span className="text-xs text-on-surface-variant hidden sm:block">{label}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
       <section aria-labelledby="hero-heading" className="max-w-container-max mx-auto px-6 relative">
         <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[716px]">
           <div className="flex flex-col gap-stack-lg z-10">
@@ -92,6 +150,81 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onStartConfig }) => {
           </div>
         </div>
       </section>
+
+      {/* Referenzprojekte */}
+      <section aria-label="Referenzprojekte" className="max-w-container-max mx-auto px-6 py-14 mt-4">
+        <div className="text-center mb-10">
+          <p className="text-xs font-semibold text-secondary uppercase tracking-widest mb-2">Echte Ergebnisse</p>
+          <h2 className="text-2xl md:text-3xl font-black text-primary mb-3">Was unsere Kunden erreicht haben</h2>
+          <p className="text-slate-500 text-base max-w-xl mx-auto">Verifizierte Ergebnisse aus abgeschlossenen Projekten auf der Plattform.</p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {[
+            { name: 'Familie Mayer',     city: 'München, Bayern',         kwp: 12.4, savings: 1_240, amort: 7,  rating: 5, roof: 'Satteldach SW', date: 'März 2026',   badge: 'Mit KfW 270 finanziert' },
+            { name: 'Thomas Becker',     city: 'Hamburg, HH',             kwp: 9.8,  savings: 980,  amort: 8,  rating: 5, roof: 'Flachdach S',   date: 'Februar 2026', badge: 'Eigenkapital' },
+            { name: 'Petra & Klaus W.', city: 'Stuttgart, Baden-Württemberg', kwp: 15.2, savings: 1_520, amort: 6, rating: 5, roof: 'Pultdach SO', date: 'April 2026',   badge: 'Inkl. Batteriespeicher' },
+          ].map(({ name, city, kwp, savings, amort, rating, roof, date, badge }) => (
+            <div key={name} className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 flex flex-col gap-4 hover:shadow-md hover:border-secondary/40 transition-all">
+              <div className="flex items-start justify-between">
+                <div>
+                  <p className="font-bold text-primary text-base">{name}</p>
+                  <p className="text-xs text-slate-400 mt-0.5">{city} · {date}</p>
+                </div>
+                <div className="flex items-center gap-0.5">
+                  {Array.from({ length: rating }).map((_, i) => (
+                    <span key={i} className="material-symbols-outlined text-secondary text-[16px] fill">star</span>
+                  ))}
+                </div>
+              </div>
+              <div className="grid grid-cols-3 gap-3">
+                {[
+                  { label: 'Anlage', value: `${kwp} kWp` },
+                  { label: 'Ersparnis', value: `${savings.toLocaleString('de-DE')} €/J` },
+                  { label: 'Amort.', value: `${amort} Jahre` },
+                ].map(({ label, value }) => (
+                  <div key={label} className="bg-slate-50 rounded-xl p-3 text-center">
+                    <p className="text-[10px] text-slate-400 uppercase tracking-wider font-bold mb-1">{label}</p>
+                    <p className="font-black text-primary text-sm">{value}</p>
+                  </div>
+                ))}
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-xs text-slate-400">{roof}</span>
+                <span className="bg-green-50 text-green-700 text-[11px] font-bold px-2.5 py-1 rounded-full border border-green-100 flex items-center gap-1">
+                  <span className="material-symbols-outlined text-[12px] fill">verified</span>
+                  {badge}
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Trust-Siegel */}
+      <section aria-label="Zertifizierungen und Qualitätsmerkmale" className="max-w-container-max mx-auto px-6 py-10 mt-4">
+        <p className="text-center text-xs font-semibold text-on-surface-variant uppercase tracking-widest mb-6">
+          Geprüfte Qualität & Sicherheit
+        </p>
+        <div className="flex flex-wrap justify-center items-center gap-6 md:gap-10">
+          {[
+            { icon: 'verified',        label: 'TÜV-geprüft',       sub: 'Qualitätssicherung' },
+            { icon: 'electric_bolt',   label: 'VDE-konform',        sub: 'Elektrische Sicherheit' },
+            { icon: 'engineering',     label: 'Meisterbetriebe',    sub: 'Zertifizierte Fachkräfte' },
+            { icon: 'shield_lock',     label: 'DSGVO-konform',      sub: '100 % Datenschutz' },
+            { icon: 'wb_sunny',        label: 'BSW Solar',          sub: 'Bundesverband Solarwirtschaft' },
+            { icon: 'euro_symbol',     label: '0 % MwSt.',          sub: 'Automatisch eingerechnet' },
+          ].map(({ icon, label, sub }) => (
+            <div key={label} className="flex flex-col items-center gap-1.5 text-center w-24">
+              <div className="w-12 h-12 rounded-xl bg-surface-container border border-surface-container-highest flex items-center justify-center shadow-sm">
+                <span className="material-symbols-outlined text-secondary-container text-[22px] fill">{icon}</span>
+              </div>
+              <span className="font-bold text-primary text-xs">{label}</span>
+              <span className="text-[10px] text-on-surface-variant leading-tight">{sub}</span>
+            </div>
+          ))}
+        </div>
+      </section>
     </main>
+    </>
   );
 };

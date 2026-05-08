@@ -5,6 +5,8 @@ export interface Grant {
   type: 'national' | 'regional';
   highlight: string;
   icon: string;
+  url: string;
+  subsidyAmount?: number; // Direktzuschuss in €, der die Investition mindert (keine Darlehen)
 }
 
 export const NATIONAL_GRANTS: Grant[] = [
@@ -16,6 +18,7 @@ export const NATIONAL_GRANTS: Grant[] = [
     type: 'national',
     highlight: '~19 % Sofortersparnis',
     icon: 'percent',
+    url: 'https://www.bundesregierung.de',
   },
   {
     id: 'eeg',
@@ -25,6 +28,7 @@ export const NATIONAL_GRANTS: Grant[] = [
     type: 'national',
     highlight: '20 Jahre garantiert',
     icon: 'bolt',
+    url: 'https://www.bundesnetzagentur.de',
   },
   {
     id: 'kfw270',
@@ -34,6 +38,7 @@ export const NATIONAL_GRANTS: Grant[] = [
     type: 'national',
     highlight: 'Kredit ab 5,21 % eff. p.a.',
     icon: 'account_balance',
+    url: 'https://www.kfw.de',
   },
 ];
 
@@ -49,6 +54,8 @@ const REGIONAL_GRANTS: Record<string, Grant[]> = {
       type: 'regional',
       highlight: 'Zuschuss bis 5.000 €',
       icon: 'solar_power',
+      url: 'https://www.sab.de',
+      subsidyAmount: 3000,
     },
     {
       id: 'thuefonds',
@@ -58,6 +65,7 @@ const REGIONAL_GRANTS: Record<string, Grant[]> = {
       type: 'regional',
       highlight: 'Darlehen ab 1,5 % p.a.',
       icon: 'park',
+      url: 'https://www.aufbaubank.de',
     },
   ],
   // PLZ 1x — Berlin & Brandenburg
@@ -70,6 +78,8 @@ const REGIONAL_GRANTS: Record<string, Grant[]> = {
       type: 'regional',
       highlight: 'Zuschuss bis 10.000 €',
       icon: 'apartment',
+      url: 'https://www.ibb.de',
+      subsidyAmount: 5000,
     },
     {
       id: 'ilb',
@@ -79,18 +89,21 @@ const REGIONAL_GRANTS: Record<string, Grant[]> = {
       type: 'regional',
       highlight: 'Darlehen ab 2,0 % p.a.',
       icon: 'forest',
+      url: 'https://www.ilb.de',
     },
   ],
   // PLZ 2x — Hamburg & Schleswig-Holstein
   '2': [
     {
       id: 'hamburgenergie',
-      title: 'HamburgEnergie Solar',
+      title: 'IFB Hamburg Solar',
       description:
-        'Das Hamburger Förderprogramm für erneuerbare Energien unterstützt PV-Anlagen auf Wohn- und Gewerbegebäuden mit Investitionszuschüssen.',
+        'Die Investitions- und Förderbank Hamburg (IFB) unterstützt PV-Anlagen auf Wohn- und Gewerbegebäuden mit Investitionszuschüssen.',
       type: 'regional',
       highlight: 'Zuschuss bis 2.500 €',
       icon: 'water',
+      url: 'https://www.ifbhh.de',
+      subsidyAmount: 1500,
     },
     {
       id: 'eksh',
@@ -100,6 +113,8 @@ const REGIONAL_GRANTS: Record<string, Grant[]> = {
       type: 'regional',
       highlight: 'Zuschuss bis 3.000 €',
       icon: 'wind_power',
+      url: 'https://www.eksh.org',
+      subsidyAmount: 1500,
     },
   ],
   // PLZ 3x — Niedersachsen & Hessen (Nord)
@@ -112,6 +127,7 @@ const REGIONAL_GRANTS: Record<string, Grant[]> = {
       type: 'regional',
       highlight: 'Darlehen ab 1,8 % p.a.',
       icon: 'eco',
+      url: 'https://www.nbank.de',
     },
   ],
   // PLZ 4x & 5x — Nordrhein-Westfalen
@@ -124,6 +140,8 @@ const REGIONAL_GRANTS: Record<string, Grant[]> = {
       type: 'regional',
       highlight: 'Zuschuss bis 7.500 €',
       icon: 'factory',
+      url: 'https://www.nrwbank.de',
+      subsidyAmount: 4000,
     },
   ],
   '5': [
@@ -135,6 +153,8 @@ const REGIONAL_GRANTS: Record<string, Grant[]> = {
       type: 'regional',
       highlight: 'Zuschuss bis 7.500 €',
       icon: 'factory',
+      url: 'https://www.nrwbank.de',
+      subsidyAmount: 4000,
     },
     {
       id: 'kef-rlp',
@@ -144,6 +164,8 @@ const REGIONAL_GRANTS: Record<string, Grant[]> = {
       type: 'regional',
       highlight: 'Zuschuss bis 4.000 €',
       icon: 'castle',
+      url: 'https://www.isb.rlp.de',
+      subsidyAmount: 2000,
     },
   ],
   // PLZ 6x — Hessen & Rheinland-Pfalz
@@ -156,6 +178,7 @@ const REGIONAL_GRANTS: Record<string, Grant[]> = {
       type: 'regional',
       highlight: 'Darlehen ab 1,25 % p.a.',
       icon: 'account_tree',
+      url: 'https://www.wibank.de',
     },
     {
       id: 'kef-rlp-6',
@@ -165,6 +188,8 @@ const REGIONAL_GRANTS: Record<string, Grant[]> = {
       type: 'regional',
       highlight: 'Zuschuss bis 4.000 €',
       icon: 'castle',
+      url: 'https://www.isb.rlp.de',
+      subsidyAmount: 2000,
     },
   ],
   // PLZ 7x — Baden-Württemberg
@@ -177,6 +202,7 @@ const REGIONAL_GRANTS: Record<string, Grant[]> = {
       type: 'regional',
       highlight: 'Darlehen ab 1,0 % p.a.',
       icon: 'castle',
+      url: 'https://www.l-bank.de',
     },
   ],
   // PLZ 8x & 9x — Bayern
@@ -189,6 +215,7 @@ const REGIONAL_GRANTS: Record<string, Grant[]> = {
       type: 'regional',
       highlight: 'Kredit ab 0,95 % p.a.',
       icon: 'wb_sunny',
+      url: 'https://www.lfa.de',
     },
   ],
   '9': [
@@ -200,6 +227,7 @@ const REGIONAL_GRANTS: Record<string, Grant[]> = {
       type: 'regional',
       highlight: 'Kredit ab 0,95 % p.a.',
       icon: 'wb_sunny',
+      url: 'https://www.lfa.de',
     },
   ],
 };
@@ -207,6 +235,10 @@ const REGIONAL_GRANTS: Record<string, Grant[]> = {
 export function getRegionalGrants(zip: string): Grant[] {
   if (!zip || zip.length < 1) return [];
   return REGIONAL_GRANTS[zip[0]] ?? [];
+}
+
+export function getGrantSubsidyTotal(zip: string): number {
+  return getRegionalGrants(zip).reduce((sum, g) => sum + (g.subsidyAmount ?? 0), 0);
 }
 
 export function getStateLabel(zip: string): string {

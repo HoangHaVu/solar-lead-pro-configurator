@@ -1,7 +1,10 @@
 import React from 'react';
-import type { ROICalculations } from '../../hooks/useConfigurator';
+import { PDFDownloadLink } from '@react-pdf/renderer';
+import type { ConfigData, ROICalculations } from '../../hooks/useConfigurator';
+import { ROIPdfDocument } from '../ROIPdfDocument';
 
 interface StepResultProps {
+  data: ConfigData;
   calculations: ROICalculations;
   onNext: () => void;
 }
@@ -27,16 +30,21 @@ function buildFillPath(chartData: { year: number; value: number }[], linePath: s
   return `${linePath} L1000,200 L0,200 Z`;
 }
 
-export const StepResult: React.FC<StepResultProps> = ({ calculations, onNext }) => {
+export const StepResult: React.FC<StepResultProps> = ({ data, calculations, onNext }) => {
   const {
     kwp,
     investment,
+    grantSavings,
+    effectiveInvestment,
+    gridFeedIn,
     autarky,
     annualSavings,
     amortization,
     profit20Years,
     chartData,
   } = calculations;
+
+  const eegRevenue = Math.round(gridFeedIn * 0.082);
 
   const linePath = buildChartPath(chartData);
   const fillPath = buildFillPath(chartData, linePath);
@@ -55,7 +63,7 @@ export const StepResult: React.FC<StepResultProps> = ({ calculations, onNext }) 
           <span className="material-symbols-outlined text-[16px] fill">check_circle</span>
           <span>Analyse bereit</span>
         </div>
-        <h1 className="font-headline-xl text-headline-xl text-primary mb-stack-sm">Deine Wirtschaftlichkeits-Analyse</h1>
+        <h1 className="font-bold text-2xl sm:text-3xl lg:text-4xl text-primary mb-stack-sm">Deine Wirtschaftlichkeits-Analyse</h1>
         <p className="font-body-lg text-body-lg text-on-surface-variant">Basierend auf deinen Angaben haben wir eine individuelle Prognose für deine Photovoltaikanlage erstellt.</p>
       </div>
 
@@ -75,7 +83,19 @@ export const StepResult: React.FC<StepResultProps> = ({ calculations, onNext }) 
             <span className="material-symbols-outlined fill">account_balance_wallet</span>
           </div>
           <h3 className="font-body-md text-body-md text-on-surface-variant mb-1">Investition</h3>
-          <div className="font-headline-lg text-headline-lg text-primary">ca. {investment.toLocaleString('de-DE')} <span className="font-headline-md text-headline-md text-on-surface-variant">€</span></div>
+          {grantSavings > 0 ? (
+            <>
+              <div className="font-headline-lg text-headline-lg text-primary">
+                ca. {effectiveInvestment.toLocaleString('de-DE')} <span className="font-headline-md text-headline-md text-on-surface-variant">€</span>
+              </div>
+              <p className="text-xs text-secondary-container font-semibold mt-1 flex items-center gap-1">
+                <span className="material-symbols-outlined text-[14px] fill">sell</span>
+                nach Förderungen (statt {investment.toLocaleString('de-DE')} €)
+              </p>
+            </>
+          ) : (
+            <div className="font-headline-lg text-headline-lg text-primary">ca. {investment.toLocaleString('de-DE')} <span className="font-headline-md text-headline-md text-on-surface-variant">€</span></div>
+          )}
         </div>
 
         {/* Amortisation */}
@@ -89,6 +109,53 @@ export const StepResult: React.FC<StepResultProps> = ({ calculations, onNext }) 
             </div>
             <h3 className="font-body-md text-body-md text-primary-fixed-dim mb-1">Amortisation</h3>
             <div className="font-headline-lg text-headline-lg text-white">~ {amortization} <span className="font-headline-md text-headline-md text-primary-fixed-dim">Jahre</span></div>
+          </div>
+        </div>
+
+        {/* Förderungsübersicht */}
+        <div className="md:col-span-12 bg-gradient-to-r from-secondary-container/10 to-primary/5 border border-secondary-container/30 rounded-xl p-6">
+          <div className="flex items-center gap-2 mb-4">
+            <span className="material-symbols-outlined text-secondary-container fill">verified</span>
+            <h3 className="font-bold text-primary text-sm uppercase tracking-widest">Förderungen & Vergünstigungen — bereits eingerechnet</h3>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div className="flex items-start gap-3 bg-white/60 rounded-lg p-4">
+              <span className="material-symbols-outlined text-secondary-container fill text-[20px] shrink-0 mt-0.5">percent</span>
+              <div>
+                <p className="font-bold text-primary text-sm">0 % Mehrwertsteuer</p>
+                <p className="text-xs text-on-surface-variant mt-0.5">Preis bereits ohne MwSt. — spart ~19 % auf den Kaufpreis</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3 bg-white/60 rounded-lg p-4">
+              <span className="material-symbols-outlined text-secondary-container fill text-[20px] shrink-0 mt-0.5">bolt</span>
+              <div>
+                <p className="font-bold text-primary text-sm">EEG Einspeisevergütung</p>
+                <p className="text-xs text-on-surface-variant mt-0.5">
+                  {eegRevenue > 0
+                    ? `ca. ${eegRevenue.toLocaleString('de-DE')} €/Jahr · 20 Jahre garantiert`
+                    : '8,2 ct/kWh · 20 Jahre garantiert'}
+                </p>
+              </div>
+            </div>
+            {grantSavings > 0 ? (
+              <div className="flex items-start gap-3 bg-secondary-container/10 border border-secondary-container/20 rounded-lg p-4">
+                <span className="material-symbols-outlined text-secondary-container fill text-[20px] shrink-0 mt-0.5">savings</span>
+                <div>
+                  <p className="font-bold text-primary text-sm">Regionaler Zuschuss</p>
+                  <p className="text-xs text-on-surface-variant mt-0.5">
+                    −{grantSavings.toLocaleString('de-DE')} € vom Kaufpreis abgezogen
+                  </p>
+                </div>
+              </div>
+            ) : (
+              <div className="flex items-start gap-3 bg-white/60 rounded-lg p-4">
+                <span className="material-symbols-outlined text-on-surface-variant text-[20px] shrink-0 mt-0.5">location_on</span>
+                <div>
+                  <p className="font-bold text-primary text-sm">Regionale Förderung</p>
+                  <p className="text-xs text-on-surface-variant mt-0.5">Prüfe zusätzliche Zuschüsse im Förderungsschritt</p>
+                </div>
+              </div>
+            )}
           </div>
         </div>
 
@@ -138,18 +205,73 @@ export const StepResult: React.FC<StepResultProps> = ({ calculations, onNext }) 
         </div>
       </div>
 
+      {/* KfW-Finanzierungsrechner */}
+      {effectiveInvestment > 0 && (() => {
+        const kfwRate = 0.0385;
+        const months = 120;
+        const mr = kfwRate / 12;
+        const monthlyKfw = Math.round(effectiveInvestment * mr / (1 - Math.pow(1 + mr, -months)));
+        const monthlySimple = Math.round(effectiveInvestment / months);
+        return (
+          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-100 rounded-2xl p-6 mb-stack-lg">
+            <div className="flex items-center gap-2 mb-4">
+              <span className="material-symbols-outlined text-blue-600 fill text-[20px]">account_balance</span>
+              <h3 className="font-bold text-primary text-sm uppercase tracking-widest">KfW-Finanzierungsoption — Anlage ohne Eigenkapital</h3>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <div className="bg-white rounded-xl p-4 border border-blue-100 text-center">
+                <p className="text-xs text-slate-500 mb-1">Monatliche Rate (KfW 270)</p>
+                <p className="text-2xl font-black text-primary">ca. {monthlyKfw.toLocaleString('de-DE')} €</p>
+                <p className="text-xs text-slate-400 mt-1">bei ~3,85 % Zins, 10 Jahre</p>
+              </div>
+              <div className="bg-white rounded-xl p-4 border border-blue-100 text-center">
+                <p className="text-xs text-slate-500 mb-1">Monatliche Ersparnis</p>
+                <p className="text-2xl font-black text-secondary">ca. {Math.round(annualSavings / 12).toLocaleString('de-DE')} €</p>
+                <p className="text-xs text-slate-400 mt-1">Strom + Einspeisevergütung</p>
+              </div>
+              <div className={`rounded-xl p-4 border text-center ${Math.round(annualSavings / 12) >= monthlyKfw ? 'bg-green-50 border-green-200' : 'bg-white border-blue-100'}`}>
+                <p className="text-xs text-slate-500 mb-1">Monatliche Netto-Bilanz</p>
+                <p className={`text-2xl font-black ${Math.round(annualSavings / 12) >= monthlyKfw ? 'text-green-600' : 'text-primary'}`}>
+                  {Math.round(annualSavings / 12) >= monthlyKfw ? '+' : ''}{(Math.round(annualSavings / 12) - monthlyKfw).toLocaleString('de-DE')} €
+                </p>
+                <p className="text-xs text-slate-400 mt-1">Ersparnis minus Rate</p>
+              </div>
+            </div>
+            <p className="text-xs text-slate-400 mt-3">
+              * Orientierungswert auf Basis KfW-Programm 270 (Erneuerbare Energien). Tatsächlicher Zinssatz je nach Bonität und aktuellem KfW-Angebot. Keine Finanzierungsberatung.
+            </p>
+          </div>
+        );
+      })()}
+
       {/* CTA */}
       <div className="bg-primary-container rounded-2xl p-stack-lg text-center relative overflow-hidden ambient-shadow-lvl2">
         <div className="relative z-10 max-w-2xl mx-auto flex flex-col items-center">
           <h2 className="font-headline-lg text-headline-lg text-white mb-stack-md">Bereit für den nächsten Schritt?</h2>
           <p className="font-body-lg text-body-lg text-primary-fixed-dim mb-stack-lg">Fordere jetzt dein detailliertes, kostenloses und unverbindliches Angebot an.</p>
-          <button
-            className="bg-secondary-container hover:bg-secondary-fixed text-on-secondary-container font-label-md text-label-md px-8 py-4 rounded-lg shadow-md transition-all transform hover:-translate-y-1 flex items-center gap-2"
-            onClick={onNext}
-          >
-            <span>Individuelles Angebot anfordern</span>
-            <span className="material-symbols-outlined">arrow_forward</span>
-          </button>
+          <div className="flex flex-col sm:flex-row gap-3 items-center">
+            <button
+              className="bg-secondary-container hover:bg-secondary-fixed text-on-secondary-container font-label-md text-label-md px-8 py-4 rounded-lg shadow-md transition-all transform hover:-translate-y-1 flex items-center gap-2"
+              onClick={onNext}
+            >
+              <span>Individuelles Angebot anfordern</span>
+              <span className="material-symbols-outlined">arrow_forward</span>
+            </button>
+            <PDFDownloadLink
+              document={<ROIPdfDocument data={data} calculations={calculations} />}
+              fileName="solarconfig-wirtschaftlichkeitsanalyse.pdf"
+              className="bg-white/10 hover:bg-white/20 text-white font-label-md text-label-md px-8 py-4 rounded-lg border border-white/30 transition-all flex items-center gap-2"
+            >
+              {({ loading }) => (
+                <>
+                  <span className="material-symbols-outlined text-[20px]">
+                    {loading ? 'hourglass_empty' : 'download'}
+                  </span>
+                  <span>{loading ? 'PDF wird erstellt…' : 'Analyse als PDF speichern'}</span>
+                </>
+              )}
+            </PDFDownloadLink>
+          </div>
         </div>
       </div>
     </div>

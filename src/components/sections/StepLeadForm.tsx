@@ -1,22 +1,31 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { submitLead } from '../../services/leads';
-import type { ConfigData, ROICalculations } from '../../hooks/useConfigurator';
+import type { ConfigData, PlanningHorizon, ROICalculations } from '../../hooks/useConfigurator';
 
 interface StepLeadFormProps {
   data: ConfigData;
   calculations: ROICalculations;
   onNext: () => void;
   onPrev: () => void;
+  onUpdate: (d: Partial<ConfigData>) => void;
 }
 
 const INPUT_CLASS =
   'w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3 focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container font-body-md text-body-md transition-colors placeholder:text-outline';
+
+const HORIZONS: { value: PlanningHorizon; label: string; sub: string; icon: string }[] = [
+  { value: 'sofort',   label: 'So bald wie möglich', sub: 'Ich bin startbereit',       icon: 'rocket_launch' },
+  { value: '3monate',  label: 'In 3 Monaten',        sub: 'Ich plane kurzfristig',     icon: 'event' },
+  { value: '12monate', label: 'In 12 Monaten',       sub: 'Ich sammle Informationen',  icon: 'schedule' },
+];
 
 export const StepLeadForm: React.FC<StepLeadFormProps> = ({
   data,
   calculations,
   onNext,
   onPrev,
+  onUpdate,
 }) => {
   const [form, setForm] = useState({
     firstName: '',
@@ -26,6 +35,7 @@ export const StepLeadForm: React.FC<StepLeadFormProps> = ({
     wantsZoomCall: false,
     privacyConsent: false,
   });
+  const [photo, setPhoto] = useState<File | null>(null);
   const [status, setStatus] = useState<'idle' | 'loading' | 'error'>('idle');
   const [errorMsg, setErrorMsg] = useState('');
 
@@ -46,7 +56,9 @@ export const StepLeadForm: React.FC<StepLeadFormProps> = ({
           wantsZoomCall: form.wantsZoomCall,
         },
         data,
-        calculations
+        calculations,
+        undefined,
+        photo,
       );
       onNext();
     } catch (err) {
@@ -68,6 +80,71 @@ export const StepLeadForm: React.FC<StepLeadFormProps> = ({
           Hinterlasse deine Kontaktdaten, damit unsere Experten dein persönliches PV-Angebot
           kalkulieren und dir unverbindlich zusenden können.
         </p>
+      </div>
+
+      {/* Planungshorizont */}
+      <div className="bg-surface-container-lowest rounded-xl border border-outline-variant/30 p-card-padding">
+        <h2 className="font-headline-md text-primary mb-1">Wann planst du die Umsetzung?</h2>
+        <p className="font-body-md text-on-surface-variant text-sm mb-4">Hilft uns, dein Angebot passend zu priorisieren.</p>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          {HORIZONS.map(({ value, label, sub, icon }) => (
+            <button
+              key={value}
+              type="button"
+              onClick={() => onUpdate({ planningHorizon: value })}
+              className={`flex flex-col items-center gap-2 p-4 rounded-xl border-2 text-center transition-all ${
+                data.planningHorizon === value
+                  ? 'border-secondary-container bg-secondary-fixed/10'
+                  : 'border-surface-variant hover:border-secondary-container/40 bg-surface-container-lowest'
+              }`}
+            >
+              <span className={`material-symbols-outlined text-3xl fill ${data.planningHorizon === value ? 'text-secondary-container' : 'text-outline'}`}>
+                {icon}
+              </span>
+              <span className="font-label-md text-primary text-sm font-bold">{label}</span>
+              <span className="text-xs text-on-surface-variant">{sub}</span>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Finanzierungsbedarf */}
+      <div className="bg-surface-container-lowest rounded-xl border border-outline-variant/30 p-card-padding">
+        <h2 className="font-headline-md text-primary mb-1">Hast du Finanzierungsbedarf?</h2>
+        <p className="font-body-md text-on-surface-variant text-sm mb-4">
+          Wir können dir passende KfW-Finanzierungsoptionen mit einplanen.
+        </p>
+        <div className="grid grid-cols-2 gap-3">
+          {[
+            { value: false, label: 'Nein, Eigenkapital', icon: 'account_balance_wallet' },
+            { value: true,  label: 'Ja, Finanzierung gewünscht', icon: 'account_balance' },
+          ].map(({ value, label, icon }) => (
+            <button
+              key={String(value)}
+              type="button"
+              onClick={() => onUpdate({ needsFinancing: value })}
+              className={`flex items-center gap-3 p-4 rounded-xl border-2 text-left transition-all ${
+                data.needsFinancing === value
+                  ? 'border-secondary-container bg-secondary-fixed/10'
+                  : 'border-surface-variant hover:border-secondary-container/40 bg-surface-container-lowest'
+              }`}
+            >
+              <span className={`material-symbols-outlined text-2xl fill ${data.needsFinancing === value ? 'text-secondary-container' : 'text-outline'}`}>
+                {icon}
+              </span>
+              <span className="font-label-md text-primary text-sm font-semibold">{label}</span>
+            </button>
+          ))}
+        </div>
+        {data.needsFinancing && (
+          <div className="mt-3 flex items-start gap-2 bg-primary/5 rounded-lg p-3 text-xs text-on-surface-variant">
+            <span className="material-symbols-outlined text-primary text-[16px] shrink-0 mt-0.5 fill">info</span>
+            <span>
+              Der <strong className="text-primary">KfW-Kredit 270</strong> bietet Zinsen ab 5,21 % p.a. mit
+              Laufzeiten bis 30 Jahren — wir nennen dir die aktuellen Konditionen im Angebot.
+            </span>
+          </div>
+        )}
       </div>
 
       <div className="bg-surface-container-lowest rounded-xl shadow-ambient-sm border border-outline-variant/30 p-card-padding">
@@ -165,6 +242,35 @@ export const StepLeadForm: React.FC<StepLeadFormProps> = ({
               </div>
             </label>
 
+            {/* Dach-Foto (optional) */}
+            <div className="p-4">
+              <p className="font-label-md text-label-md text-on-surface mb-2">
+                Dachfoto <span className="text-outline font-normal">(optional)</span>
+              </p>
+              <p className="font-body-sm text-body-sm text-on-surface-variant mb-3">
+                Ein Foto deines Dachs hilft dem Installateur bei der genauen Kalkulation.
+              </p>
+              <label className="flex items-center gap-3 cursor-pointer group">
+                <div className={`flex items-center gap-2 px-4 py-2.5 rounded-lg border-2 border-dashed transition-colors text-sm font-medium ${
+                  photo ? 'border-primary-container bg-primary-container/10 text-primary-container' : 'border-outline-variant text-on-surface-variant hover:border-primary-container hover:text-primary-container'
+                }`}>
+                  <span className="material-symbols-outlined text-[18px]">{photo ? 'check_circle' : 'upload'}</span>
+                  {photo ? photo.name : 'Foto auswählen'}
+                </div>
+                <input
+                  type="file"
+                  accept="image/jpeg,image/png,image/webp,image/heic"
+                  className="hidden"
+                  onChange={e => setPhoto(e.target.files?.[0] ?? null)}
+                />
+                {photo && (
+                  <button type="button" onClick={() => setPhoto(null)} className="text-xs text-outline hover:text-error transition-colors">
+                    Entfernen
+                  </button>
+                )}
+              </label>
+            </div>
+
             {/* Datenschutz */}
             <label className="flex items-start gap-4 p-4 cursor-pointer">
               <div className="relative flex items-center justify-center w-6 h-6 mt-0.5 shrink-0">
@@ -181,9 +287,9 @@ export const StepLeadForm: React.FC<StepLeadFormProps> = ({
               </div>
               <span className="font-body-md text-body-md text-on-surface">
                 Ich stimme der Verarbeitung meiner Daten gemäß der{' '}
-                <span className="text-primary-container font-medium underline decoration-secondary-container underline-offset-4">
+                <Link to="/datenschutz" className="text-primary-container font-medium underline decoration-secondary-container underline-offset-4">
                   Datenschutzerklärung
-                </span>{' '}
+                </Link>{' '}
                 zu.*
               </span>
             </label>
@@ -220,11 +326,18 @@ export const StepLeadForm: React.FC<StepLeadFormProps> = ({
                 </>
               )}
             </button>
-            <div className="flex items-center gap-2 mt-stack-sm text-primary-container/80">
-              <span className="material-symbols-outlined text-[18px] fill">shield_lock</span>
-              <span className="font-caption text-caption font-medium">
-                100 % Datenschutz gemäß DSGVO
-              </span>
+            <div className="flex flex-wrap justify-center gap-4 mt-4 pt-4 border-t border-outline-variant/30">
+              {[
+                { icon: 'shield_lock',   text: 'DSGVO-konform' },
+                { icon: 'verified',      text: 'TÜV-geprüft' },
+                { icon: 'engineering',   text: 'Meisterbetriebe' },
+                { icon: 'euro_symbol',   text: '0 % MwSt.' },
+              ].map(({ icon, text }) => (
+                <div key={text} className="flex items-center gap-1 text-xs text-outline font-medium">
+                  <span className="material-symbols-outlined text-[14px] fill text-secondary-container">{icon}</span>
+                  {text}
+                </div>
+              ))}
             </div>
           </div>
         </form>

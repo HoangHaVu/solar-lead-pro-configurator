@@ -2,8 +2,35 @@
 <html lang="de">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="theme-color" content="#F59E0B" />
+
+    <!-- Default SEO (überschrieben per Route via react-helmet-async) -->
+    <title>Kostenloser PV-Konfigurator | SolarConfig</title>
+    <meta name="description" content="Konfiguriere deine Solaranlage in 5 Minuten. Kostenlose Wirtschaftlichkeitsanalyse, regionale Förderungen und direktes Angebot vom zertifizierten Fachbetrieb." />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph (Fallback für Social-Media-Crawler ohne JS) -->
+    <meta property="og:title" content="Kostenloser PV-Konfigurator | SolarConfig" />
+    <meta property="og:description" content="Konfiguriere deine Solaranlage in 5 Minuten. Kostenlose Wirtschaftlichkeitsanalyse und direktes Angebot vom Fachbetrieb." />
+    <meta property="og:image" content="https://solarconfig.de/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://solarconfig.de/" />
+    <meta property="og:site_name" content="SolarConfig" />
+    <meta property="og:locale" content="de_DE" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Kostenloser PV-Konfigurator | SolarConfig" />
+    <meta name="twitter:description" content="Konfiguriere deine Solaranlage in 5 Minuten. Kostenlose Wirtschaftlichkeitsanalyse und direktes Angebot vom Fachbetrieb." />
+    <meta name="twitter:image" content="https://solarconfig.de/og-image.png" />
+
+    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
     <style>
@@ -14,7 +41,6 @@
         font-variation-settings: 'FILL' 1;
       }
     </style>
-    <title>Solar Lead Pro PV-Konfigurator</title>
   </head>
   <body>
     <div id="root"></div>

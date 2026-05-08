@@ -1,6 +1,6 @@
 # Solar Konfigurator
 
-Mehrstufiger Solar-Konfigurator für den deutschen Markt. Erst vollständige Wirtschaftlichkeitsanalyse — dann Lead. Kein Kontaktdaten-Gate vor dem Ergebnis.
+Mehrstufiger Solar-Konfigurator für den deutschen Markt mit vollständigem Kunden- und Installateur-Dashboard. Erst vollständige Wirtschaftlichkeitsanalyse — dann Lead.
 
 ## Das Konzept
 
@@ -14,8 +14,9 @@ Deutsche Kunden sind skeptisch gegenüber klassischen Lead-Formularen. Dieser Ko
 | **Styling** | Tailwind CSS v4 |
 | **Sprache** | TypeScript |
 | **Package Manager** | npm |
+| **Icons** | lucide-react |
 | **Fonts** | Inter (Google Fonts) |
-| **Icons** | Material Symbols Outlined |
+| **Backend** | Supabase (leads, Auth) |
 
 ## Starten
 
@@ -26,28 +27,68 @@ npm run build    # Production Build
 npm run preview  # Production Preview
 ```
 
+## Screens & Routen (12 Routes)
+
+### Public
+| Route | Beschreibung |
+|-------|-------------|
+| `/` | LandingPage — Hero, PLZ-Check, Trust-Badges |
+| `/configurator` | Konfigurator-Wizard (6 Steps) |
+| `/login` | Login (Kunde + Installateur) |
+| `/register` | Kunden-Registrierung |
+| `/register-installer` | Installateur-Registrierung |
+
+### Kunden-Dashboard
+| Route | Beschreibung |
+|-------|-------------|
+| `/dashboard` | Projektstatus, Specs, Kontaktkarte |
+| `/roi` | ROI-Stats, Autarkie-Donut, Amortisations-Chart |
+| `/documents` | Dokumente (Angebote, Netzanmeldung etc.) |
+| `/support` | Support-Chat mit Installateur |
+
+### Installateur-Management
+| Route | Beschreibung |
+|-------|-------------|
+| `/pipeline` | Kanban Lead-Pipeline |
+| `/project-details` | Projektdetails (Kundendaten, Konfiguration) |
+| `/calendar` | Terminkalender |
+| `/stats` | KPI-Dashboard + Lead-Entwicklung |
+
 ## Projekt-Struktur
 
 ```
 src/
 ├── pages/
-│   ├── LandingPage.tsx          # Hero, PLZ-Check, Trust-Badges
-│   └── ConfiguratorPage.tsx     # Wizard-Container
+│   ├── LandingPage.tsx
+│   ├── ConfiguratorPage.tsx
+│   ├── LoginPage.tsx
+│   ├── CustomerRegistrationPage.tsx
+│   └── InstallerRegistrationPage.tsx
 ├── components/
 │   ├── layout/
-│   │   ├── Navbar.tsx
-│   │   └── Footer.tsx
+│   │   ├── Navbar.tsx + Footer.tsx        (Landing)
+│   │   ├── SideNavBar.tsx + TopAppBar.tsx (Kunde)
+│   │   └── InstallerSideNavBar.tsx + InstallerTopAppBar.tsx (Installer)
 │   └── sections/
-│       ├── StepRoof.tsx          # Schritt 1: Dachausrichtung, Fläche, Baujahr
-│       ├── StepEnergy.tsx        # Schritt 2: Verbrauch, E-Auto, Wärmepumpe, Speicher
-│       ├── StepGrants.tsx        # Schritt 3: Regionale & bundesweite Förderungen
-│       ├── StepResult.tsx        # Schritt 4: ROI-Dashboard
-│       ├── StepLeadForm.tsx      # Schritt 5: Angebotsanfrage (freiwillig)
-│       ├── StepConfirmation.tsx  # Schritt 6: Bestätigung & Timeline
-│       └── ConfiguratorSidebar.tsx
+│       ├── StepRoof/Energy/Grants/Result/LeadForm/Confirmation.tsx
+│       ├── ConfiguratorSidebar.tsx
+│       ├── dashboard/   (ProjectStatus, ProjectSpecs, ContactCard)
+│       ├── roi/         (StatTile, AutarkyDonut, AmortizationChart)
+│       ├── documents/   (DocumentRow)
+│       ├── chat/        (ChatMessage, ChatSidebar)
+│       ├── pipeline/    (KanbanColumn, LeadCard)
+│       ├── details/     (CustomerDataSection, ConfigSummarySection)
+│       ├── calendar/    (CalendarGrid, CalendarEvent)
+│       └── stats/       (StatsKpiCard, LeadDevelopmentChart)
 ├── hooks/
-│   └── useConfigurator.ts        # Business-Logik & State
-└── data/                         # Statische Daten & Konfiguration
+│   └── useConfigurator.ts    (ROI-Logik, PLZ-Einstrahlungsdaten)
+├── data/
+│   ├── plzIrradiation.ts     (DWD-Sonnenstunden nach PLZ-Präfix)
+│   └── grants.ts             (Bundesweite + regionale Förderungen)
+├── lib/
+│   └── supabase.ts           (Supabase Client)
+└── services/
+    └── leads.ts              (Lead-Speicherung DSGVO-konform)
 ```
 
 ## Design-System
@@ -58,19 +99,33 @@ src/
 - Background `#FBF9FB` — Haupthintergrund (Low-Glare)
 - Weiß `#FFFFFF` — Karten-Oberflächen
 
-**Typografie:** Inter — Headlines bold/tight, Body regulär/großzügig, Labels semi-bold
+**Typografie:** Inter — Headlines bold/tight, Body regulär, Labels semi-bold
 
 **Vollständiges Design-System:** `DESIGN.md`
 
 ## Maps
 
-- `docs/maps/map-homepage.md` — LandingPage Komponenten
-- `docs/maps/map-configurator.md` — Alle Wizard-Steps
-- `docs/maps/map-layout.md` — Navbar + Footer
+```
+docs/maps/
+├── map-homepage.md        — LandingPage
+├── map-configurator.md    — Wizard-Steps (1–6)
+├── map-auth.md            — Login, Registrierung
+├── map-dashboard.md       — Kunden-Dashboard
+├── map-roi.md             — ROI-Seite
+├── map-documents.md       — Dokumente
+├── map-support.md         — Support-Chat
+├── map-pipeline.md        — Installateur Pipeline
+├── map-project-details.md — Projektdetails
+├── map-calendar.md        — Kalender
+├── map-stats.md           — Statistiken
+├── map-layout.md          — Alle Layout-Komponenten
+├── map-navigation.md      — Routen & Screen-Graph
+└── map-ui-shared.md       — Geteilte UI-Komponenten
+```
 
 ## Anforderungen
 
-- DSGVO-konform (Lead-Formular freiwillig, Datenschutzhinweis)
+- DSGVO-konform (Lead-Formular freiwillig, Einwilligung gespeichert)
 - Mobile-First (Touch-Targets für Slider & Radio-Cards)
 - Trust-Siegel: TÜV, VDE, Meisterbetrieb
 
@@ -78,13 +133,11 @@ src/
 
 ## Roadmap Phase 2
 
-Sobald der Konfigurator live ist und Leads generiert, folgt die Projektmanagement-Ebene:
+Die Phase-2-Screens (Kunden-Dashboard, Installateur-Management) sind als UI-Prototypen bereits implementiert. Nächste Schritte für die Produktion:
 
-**Kunden-Dashboard:**
-Projektstatus live (Angebot → Planung → Genehmigung → Installation → Inbetriebnahme), Live-Ertragsdaten via Wechselrichter-API, Amortisationsfortschritt und CO₂-Ersparnis in Echtzeit.
-
-**Installateur-Dashboard:**
-Lead- und Projektverwaltung, Dokumenten-Upload (Angebote, Netzanmeldung, Abnahmeprotokoll), Direktkommunikation mit dem Kunden, Pipeline-Ansicht nach Projektphasen.
-
-**Weitere Ideen:**
-Batterie-Speicher-Konfiguration, Wallbox/E-Auto-Integration, White-Label für Installationsbetriebe (Multi-Tenant), KI-Dachflächenerkennung via Satellitenbild.
+- **Auth:** Supabase Auth mit Rollen (customer / installer)
+- **Echtdaten:** Projects-Tabelle, Projektstatus, Dokumente
+- **Wechselrichter-API:** Live-Ertragsdaten nach Installation
+- **Wallbox / E-Auto:** Eigenverbrauchsoptimierung
+- **White-Label:** Multi-Tenant für Installationsbetriebe
+- **KI-Dachflächenerkennung:** Via Google Maps Satellitenbild

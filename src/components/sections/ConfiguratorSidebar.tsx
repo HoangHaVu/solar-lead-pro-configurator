@@ -1,20 +1,35 @@
 import React from 'react';
+import type { ROICalculations } from '../../hooks/useConfigurator';
+import { getScoreResult } from '../../utils/leadScore';
+
+const BUILDING_LABEL: Record<string, string> = {
+  einfamilienhaus:  'Einfamilienhaus',
+  zweifamilienhaus: 'Zweifamilienhaus',
+  mehrfamilienhaus: 'Mehrfamilienhaus',
+  firmengebaeude:   'Firmengebäude',
+  sonstiges:        'Sonstiges',
+};
 
 interface ConfiguratorSidebarProps {
   currentStep: number;
   data: {
+    buildingType: string;
     roofType: string;
     consumption: number;
     zip: string;
   };
+  calculations: ROICalculations;
 }
 
-export const ConfiguratorSidebar: React.FC<ConfiguratorSidebarProps> = ({ currentStep, data }) => {
+export const ConfiguratorSidebar: React.FC<ConfiguratorSidebarProps> = ({ currentStep, data, calculations }) => {
+  const scoreResult = getScoreResult(calculations.score);
+
   const steps = [
-    { id: 1, label: 'Dachdetails', sub: 'Ausrichtung & Baujahr' },
-    { id: 2, label: 'Stromverbrauch', sub: 'Bedarf & Speicher' },
-    { id: 3, label: 'Förderungen', sub: 'Regionale Boni' },
-    { id: 4, label: 'Ergebnis', sub: 'Analyse & ROI' },
+    { id: 1, label: 'Gebäudetyp',   sub: 'Haus & Eigentümer'    },
+    { id: 2, label: 'Dachdetails',  sub: 'Neigung & Ausrichtung' },
+    { id: 3, label: 'Stromverbrauch', sub: 'Bedarf & Speicher'  },
+    { id: 4, label: 'Förderungen',  sub: 'Regionale Boni'        },
+    { id: 5, label: 'Ergebnis',     sub: 'Analyse & ROI'         },
   ];
 
   return (
@@ -43,6 +58,13 @@ export const ConfiguratorSidebar: React.FC<ConfiguratorSidebarProps> = ({ curren
         {currentStep > 1 && (
           <div className="mt-8 p-4 bg-surface-container rounded-lg flex flex-col gap-4">
             <div className="flex gap-3">
+              <span className="material-symbols-outlined text-outline">home</span>
+              <div>
+                <div className="font-caption text-caption text-on-surface-variant uppercase tracking-wide">Gebäude</div>
+                <div className="font-body-md text-body-md font-medium text-primary">{BUILDING_LABEL[data.buildingType] ?? data.buildingType}</div>
+              </div>
+            </div>
+            <div className="flex gap-3">
               <span className="material-symbols-outlined text-outline">roofing</span>
               <div>
                 <div className="font-caption text-caption text-on-surface-variant uppercase tracking-wide">Dachtyp</div>
@@ -67,6 +89,36 @@ export const ConfiguratorSidebar: React.FC<ConfiguratorSidebarProps> = ({ curren
             </div>
           </div>
         )}
+
+        {/* Live-Schätzung */}
+        <div className="mt-4 p-4 bg-secondary-fixed/10 border border-secondary-container/30 rounded-lg flex flex-col gap-3">
+          <div className="font-caption text-caption text-secondary-container uppercase tracking-wide font-semibold flex items-center gap-1">
+            <span className="material-symbols-outlined text-[14px]">bolt</span>
+            Live-Schätzung
+          </div>
+          <div className="flex justify-between items-center">
+            <span className="font-body-md text-body-md text-on-surface-variant">Systemgröße</span>
+            <span className="font-label-md text-label-md text-primary-container font-bold">{calculations.kwp} kWp</span>
+          </div>
+          <div className="flex justify-between items-center">
+            <span className="font-body-md text-body-md text-on-surface-variant">Jährl. Ersparnis</span>
+            <span className="font-label-md text-label-md text-secondary-container font-bold">ca. {calculations.annualSavings.toLocaleString('de-DE')} €</span>
+          </div>
+          <div className="flex justify-between items-center">
+            <span className="font-body-md text-body-md text-on-surface-variant">Amortisation</span>
+            <span className="font-label-md text-label-md text-primary-container font-bold">~{calculations.amortization} Jahre</span>
+          </div>
+          <div className="flex justify-between items-center">
+            <span className="font-body-md text-body-md text-on-surface-variant">Autarkie</span>
+            <span className="font-label-md text-label-md text-primary-container font-bold">{calculations.autarky} %</span>
+          </div>
+          <div className="flex justify-between items-center pt-2 border-t border-secondary-container/20">
+            <span className="font-body-md text-body-md text-on-surface-variant">Lead-Score</span>
+            <span className={`text-xs font-bold px-2 py-0.5 rounded-full border ${scoreResult.bgColor} ${scoreResult.color}`}>
+              {scoreResult.label} · {scoreResult.score}
+            </span>
+          </div>
+        </div>
       </div>
     </aside>
   );

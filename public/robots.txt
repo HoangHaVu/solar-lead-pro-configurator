@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+Disallow: /dashboard
+Disallow: /roi
+Disallow: /documents
+Disallow: /support
+Disallow: /pipeline
+Disallow: /project-details
+Disallow: /stats
+Disallow: /calendar
+
+Sitemap: https://solarconfig.de/sitemap.xml

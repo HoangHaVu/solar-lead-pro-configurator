@@ -1,17 +1,18 @@
 {
   "project": "Solar Konfigurator",
   "path": "/Users/hoanghavu/myprojects/Solar Konfigurator/",
-  "last_updated": "2026-04-29T15:00:00",
-  "version": "0.1.0",
+  "last_updated": "2026-04-30T10:00:00",
+  "version": "0.2.0",
   "status": "active",
-  "current_phase": "Phase 1 — Konfigurator (Code-Gerüst vollständig, Logik & Backend ausstehend)",
+  "current_phase": "Phase 1 + Phase 2 Screens (UI vollständig, Routing & Auth ausstehend)",
   "stack": {
     "framework": "Vite + React 19",
     "styling": "Tailwind CSS v4",
     "language": "TypeScript",
     "package_manager": "npm",
     "fonts": "Inter",
-    "icons": "Material Symbols Outlined"
+    "icons": "lucide-react",
+    "backend": "Supabase (leads-Tabelle live, Auth geplant)"
   },
   "stitch": {
     "project_id": "3955599241460119046",
@@ -28,30 +29,62 @@
       "border": "#C4C6CD"
     }
   },
+  "screens": {
+    "total_routes": 12,
+    "public": ["/", "/configurator", "/login", "/register", "/register-installer"],
+    "customer": ["/dashboard", "/roi", "/documents", "/support"],
+    "installer": ["/pipeline", "/project-details", "/calendar", "/stats"]
+  },
+  "maps": {
+    "total": 14,
+    "files": [
+      "map-homepage.md",
+      "map-configurator.md",
+      "map-auth.md",
+      "map-dashboard.md",
+      "map-roi.md",
+      "map-documents.md",
+      "map-support.md",
+      "map-pipeline.md",
+      "map-project-details.md",
+      "map-calendar.md",
+      "map-stats.md",
+      "map-layout.md",
+      "map-navigation.md",
+      "map-ui-shared.md"
+    ]
+  },
   "progress": {
     "completed": [
-      "DNA Bereich 1 (Projekt-Brief)",
-      "DNA Bereich 2 (Tech-Stack)",
-      "DNA Bereich 3 (Seiten-Baum)",
-      "Komponenten-Gerüst (alle Steps, Pages, Hooks)",
+      "DNA (alle 3 Bereiche)",
+      "Tech-Stack: Vite + React 19 + Tailwind v4 + TypeScript",
+      "6 Wizard-Steps (Konfigurator)",
+      "ROI-Berechnungslogik (useConfigurator.ts)",
+      "PLZ-Einstrahlungsdaten (plzIrradiation.ts)",
+      "Förderungen-Daten (grants.ts, national + regional)",
+      "Lead-Formular Backend (Supabase: leads-Tabelle, DSGVO)",
+      "Auth-Flow Screens (Login, CustomerReg, InstallerReg)",
+      "Kunden-Dashboard Screens (Dashboard, ROI, Documents, Support)",
+      "Installer-Management Screens (Pipeline, Details, Calendar, Stats)",
+      "Layout-Komponenten (4 Varianten: Navbar, SideNavBar, InstallerSideNavBar, TopAppBars)",
       "DESIGN.md",
-      "Maps (map-homepage, map-configurator, map-layout)",
-      "Pflichtdateien via sync"
+      "14 Maps (alle Screens dokumentiert)"
     ],
     "in_progress": [],
     "pending": [
-      "Dev-Server testen + Stitch-Abgleich",
-      "ROI-Berechnungslogik (useConfigurator.ts)",
-      "PLZ-API Einstrahlungsdaten",
-      "Förderungen-Daten (StepGrants)",
-      "Lead-Formular Backend (DSGVO)",
+      "React Router DOM + 12 Routes in App.tsx",
+      "CustomerLayout + InstallerLayout Wrapper",
+      "AuthContext (Rollen, Login-Status, Route-Guards)",
+      "Mock-Daten durch echte Props/Context ersetzen",
+      "Mobile-Responsiveness testen",
+      "Supabase Auth + projects/users Tabellen",
       "Deployment (Vercel/Netlify)"
     ]
   },
   "next_steps": [
-    "npm run dev → Wizard komplett testen",
-    "Stitch-Design-Abgleich",
-    "ROI-Berechnungslogik prüfen/verfeinern"
+    "npm install react-router-dom",
+    "App.tsx: alle 12 Routes + CustomerLayout/InstallerLayout",
+    "AuthContext implementieren"
   ],
-  "active_map": "docs/maps/map-configurator.md"
+  "active_map": "docs/maps/map-navigation.md"
 }

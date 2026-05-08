@@ -44,7 +44,7 @@ export const StepEnergy: React.FC<StepEnergyProps> = ({ data, onUpdate, onNext, 
               value={data.consumption}
               onChange={(e) => onUpdate({ consumption: parseInt(e.target.value) })}
               style={{
-                background: `linear-gradient(to right, #fea619 ${((data.consumption - 2000) / 6000) * 100}%, #c4c6cd ${((data.consumption - 2000) / 6000) * 100}%)`,
+                background: `linear-gradient(to right, #F59E0B ${((data.consumption - 2000) / 6000) * 100}%, #c4c6cd ${((data.consumption - 2000) / 6000) * 100}%)`,
                 height: '4px',
                 borderRadius: '2px',
                 WebkitAppearance: 'none'
@@ -145,19 +145,19 @@ export const StepEnergy: React.FC<StepEnergyProps> = ({ data, onUpdate, onNext, 
       </div>
 
       {/* Action Buttons */}
-      <div className="flex justify-between items-center mt-stack-md pt-6 border-t border-surface-variant">
-        <button 
-          className="px-6 py-3 rounded-lg border-2 border-primary-container text-primary-container font-label-md text-label-md hover:bg-surface-container-low transition-colors flex items-center gap-2"
+      <div className="flex flex-col-reverse sm:flex-row justify-between items-center mt-stack-md pt-6 border-t border-surface-variant gap-3">
+        <button
+          className="w-full sm:w-auto px-6 py-4 sm:py-3 rounded-lg border-2 border-primary-container text-primary-container font-label-md text-label-md hover:bg-surface-container-low transition-colors flex items-center justify-center gap-2"
           onClick={onPrev}
         >
           <span className="material-symbols-outlined text-xl">arrow_back</span>
           Zurück
         </button>
-        <button 
-          className="px-8 py-3 rounded-lg bg-secondary-container text-on-secondary-container font-headline-md text-[16px] shadow-sm hover:opacity-90 transition-opacity flex items-center gap-2"
+        <button
+          className="w-full sm:w-auto px-8 py-4 sm:py-3 rounded-lg bg-secondary-container text-on-secondary-container font-headline-md text-[16px] shadow-sm hover:opacity-90 transition-opacity flex items-center justify-center gap-2"
           onClick={onNext}
         >
-          Weiter zu Dachdetails
+          Weiter zu Förderungen
           <span className="material-symbols-outlined text-xl">arrow_forward</span>
         </button>
       </div>

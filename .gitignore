@@ -133,3 +133,4 @@ dist-ssr
 
 # Stitch (Optional: Uncomment if you want to ignore design references)
 # .stitch/
+.vercel
